@@ -1,15 +1,21 @@
 import { useSelector } from 'react-redux'
-
+import Masonry from 'react-responsive-masonry'
 const Home = () => {
   const giphys = useSelector((state: any) => state.giphys.giphys)
 
   return (
     <>
-      <div>Home</div>
-      {giphys &&
-        giphys.map((item: any) => (
-          <img key={item.id} src={item.images.original.url} alt="" />
-        ))}
+      {giphys && (
+        <Masonry columnsCount={4} gutter="10px">
+          {giphys.map((image: any) => (
+            <img
+              key={image.id}
+              src={image.images.original.url}
+              style={{ width: '100%', display: 'block' }}
+            />
+          ))}
+        </Masonry>
+      )}
     </>
   )
 }
