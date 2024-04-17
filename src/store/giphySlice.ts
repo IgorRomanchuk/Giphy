@@ -14,7 +14,7 @@ export const fetchGiphys = createAsyncThunk<
 >('giphys/fetchGiphy', async function (_, { rejectWithValue }) {
   return axios
     .get(
-      `https://api.giphy.com/v1/gifs/search?api_key=D6pzE2XH042RPjHU9yvpjm7aoJgYcJsR&q=manutd&limit=5`,
+      `https://api.giphy.com/v1/gifs/trending?api_key=D6pzE2XH042RPjHU9yvpjm7aoJgYcJsR&limit=10`,
     )
     .then((res) => res.data.data)
     .catch((err) => rejectWithValue(err.message))
