@@ -2,7 +2,9 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDispatch, useSelector } from 'react-redux'
 import Masonry from 'react-responsive-masonry'
 
+import CardGif from '../../components/cardGif'
 import { fetchGiphys } from '../../store/giphySlice'
+import getRandomInt from '../../utils/getRandomInt'
 const Home = () => {
   const dispatch: any = useDispatch()
   const giphys = useSelector((state: any) => state.giphys.giphys)
@@ -27,20 +29,10 @@ const Home = () => {
             }
           >
             <Masonry columnsCount={3} gutter="10px">
-              {giphys.map((image: any) => (
-                <img
-                  key={image.id}
-                  src={image.images.original.url}
-                  width={image.images.original.width}
-                  height={image.images.original.height}
-                  style={{
-                    width: '100%',
-                    display: 'block',
-                    backgroundColor: 'red',
-                    height: '100%',
-                  }}
-                />
-              ))}
+              {giphys.map((image: any, i: number) => {
+                const num = getRandomInt(4)
+                return <CardGif key={i} index={num} image={image} />
+              })}
             </Masonry>
           </InfiniteScroll>
         </div>
