@@ -3,18 +3,19 @@ import axios from 'axios'
 
 const initialState: any = {
   giphys: [],
-  status: null,
+  offset: 0,
+  isLoading: false,
   error: null,
 }
 
 export const fetchGiphys = createAsyncThunk<
   any,
-  undefined,
+  number | undefined,
   { rejectValue: string }
->('giphys/fetchGiphy', async function (_, { rejectWithValue }) {
-  return axios
+>('giphys/fetchGiphy', async function (offset, { rejectWithValue }) {
+  return await axios
     .get(
-      `https://api.giphy.com/v1/gifs/trending?api_key=D6pzE2XH042RPjHU9yvpjm7aoJgYcJsR&limit=10`,
+      `https://api.giphy.com/v1/gifs/trending?api_key=D6pzE2XH042RPjHU9yvpjm7aoJgYcJsR&limit=10&offset=${offset}`,
     )
     .then((res) => res.data.data)
     .catch((err) => rejectWithValue(err.message))
@@ -23,28 +24,24 @@ export const fetchGiphys = createAsyncThunk<
 const giphyssSlice = createSlice({
   name: 'giphys',
   initialState,
-  reducers: {
-    addGiphys(state, action) {
-      state.giphys = action.payload
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchGiphys.pending, (state) => {
-        state.status = 'loading'
+        state.isLoading = true
         state.error = null
       })
       .addCase(fetchGiphys.fulfilled, (state, action) => {
-        state.status = 'resolved'
-        state.giphys = action.payload
+        state.isLoading = false
+        state.error = null
+        state.offset = state.offset + 10
+        state.giphys.push(...action.payload)
       })
       .addCase(fetchGiphys.rejected, (state, action) => {
-        state.status = 'rejected'
+        state.isLoading = false
         state.error = action.payload as string
       })
   },
 })
-
-export const { addGiphys } = giphyssSlice.actions
 
 export default giphyssSlice.reducer

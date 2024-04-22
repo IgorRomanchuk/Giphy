@@ -8,8 +8,12 @@ import { fetchGiphys } from './store/giphySlice'
 
 function App() {
   const dispatch: any = useDispatch()
+
   useEffect(() => {
-    dispatch(fetchGiphys())
+    const promise = dispatch(fetchGiphys(0))
+    return () => {
+      promise?.abort()
+    }
   }, [])
   return (
     <div className="App">
