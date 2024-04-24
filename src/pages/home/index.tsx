@@ -28,7 +28,7 @@ const Home = () => {
               </p>
             }
           >
-            <Masonry columnsCount={3} gutter="10px">
+            <Masonry columnsCount={4} gutter="10px">
               {giphys.map((image: any, i: number) => {
                 const num = getRandomInt(4)
                 return <CardGif key={i} index={num} image={image} />
