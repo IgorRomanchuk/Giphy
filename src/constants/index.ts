@@ -4,3 +4,11 @@ export const colors = [
   'rgb(0, 255, 153)',
   'rgb(255, 102, 102)',
 ]
+
+export const categories = [
+  'Sports',
+  'Artist',
+  'Nature',
+  'Animals',
+  'Entertainment',
+]
