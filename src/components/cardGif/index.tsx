@@ -1,7 +1,8 @@
 import { colors } from '../../constants'
+import { Gif } from '../../types/Gif'
 
 interface IProps {
-  image: any
+  image: Gif
   index: number
 }
 

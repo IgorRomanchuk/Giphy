@@ -4,6 +4,7 @@ import Masonry from 'react-responsive-masonry'
 
 import CardGif from '../../components/cardGif'
 import { fetchTrendingGifs } from '../../store/gifsSlice'
+import { Gif } from '../../types/Gif'
 import getRandomInt from '../../utils/getRandomInt'
 const Home = () => {
   const dispatch: any = useDispatch()
@@ -31,7 +32,7 @@ const Home = () => {
             }
           >
             <Masonry columnsCount={4} gutter="10px">
-              {trendingGifs.map((image: any, i: number) => {
+              {trendingGifs.map((image: Gif, i: number) => {
                 const num = getRandomInt(4)
                 return <CardGif key={i} index={num} image={image} />
               })}

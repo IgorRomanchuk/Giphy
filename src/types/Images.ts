@@ -105,6 +105,7 @@ export interface Images {
     mp4_size: string
   }
   original: {
+    url: string
     width: string
     height: string
     size: string
