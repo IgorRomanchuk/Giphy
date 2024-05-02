@@ -4,13 +4,13 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 import Routes from './Routes'
-import { fetchGiphys } from './store/giphySlice'
+import { fetchTrendingGifs } from './store/gifsSlice'
 
 function App() {
   const dispatch: any = useDispatch()
 
   useEffect(() => {
-    const promise = dispatch(fetchGiphys(0))
+    const promise = dispatch(fetchTrendingGifs(0))
     return () => {
       promise?.abort()
     }

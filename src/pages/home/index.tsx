@@ -3,22 +3,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import Masonry from 'react-responsive-masonry'
 
 import CardGif from '../../components/cardGif'
-import { fetchGiphys } from '../../store/giphySlice'
+import { fetchTrendingGifs } from '../../store/gifsSlice'
 import getRandomInt from '../../utils/getRandomInt'
 const Home = () => {
   const dispatch: any = useDispatch()
-  const giphys = useSelector((state: any) => state.giphys.giphys)
-  const offset = useSelector((state: any) => state.giphys.offset)
+  const gifs = useSelector((state: any) => state.gifs.giphys)
+  const offset = useSelector((state: any) => state.gifs.offset)
   const fetchData = () => {
-    dispatch(fetchGiphys(offset))
+    dispatch(fetchTrendingGifs(offset))
   }
 
   return (
     <>
-      {giphys && (
+      {gifs && (
         <div>
           <InfiniteScroll
-            dataLength={giphys.length}
+            dataLength={gifs.length}
             next={fetchData}
             hasMore={true}
             loader={<h4>Loading...</h4>}
@@ -29,7 +29,7 @@ const Home = () => {
             }
           >
             <Masonry columnsCount={4} gutter="10px">
-              {giphys.map((image: any, i: number) => {
+              {gifs.map((image: any, i: number) => {
                 const num = getRandomInt(4)
                 return <CardGif key={i} index={num} image={image} />
               })}

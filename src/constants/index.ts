@@ -1,3 +1,5 @@
+export const API_KEY = 'D6pzE2XH042RPjHU9yvpjm7aoJgYcJsR'
+
 export const colors = [
   'rgb(0, 204, 255)',
   'rgb(153, 51, 255)',
