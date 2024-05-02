@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import { API_KEY } from '../constants'
 import { Gif } from '../types/Gif'
 
 interface gifsBySearchValueState {
@@ -27,7 +28,7 @@ export const fetchGifsBySearchValue = createAsyncThunk<
     return await axios
       .get(`https://api.giphy.com/v1/gifs/search`, {
         params: {
-          api_key: 'dsads',
+          api_key: API_KEY,
           q: searchValue,
           limit: 10,
           offset: offset,
