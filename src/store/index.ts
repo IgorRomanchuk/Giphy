@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import gifsBySearchValueSlice from './gifsBySearchValueSlice'
-import giphySlice from './gifsSlice'
+import trendingGifsSlice from './gifsSlice'
 
 const store = configureStore({
   reducer: {
-    gifs: giphySlice,
+    trendingGifs: trendingGifsSlice,
     gifsBySearchValue: gifsBySearchValueSlice,
   },
 })

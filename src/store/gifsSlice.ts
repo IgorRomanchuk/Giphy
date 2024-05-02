@@ -4,7 +4,7 @@ import axios from 'axios'
 import { API_KEY } from '../constants'
 
 const initialState: any = {
-  giphys: [],
+  trendingGifs: [],
   offset: 0,
   isLoading: false,
   error: null,
@@ -14,17 +14,20 @@ export const fetchTrendingGifs = createAsyncThunk<
   any,
   number,
   { rejectValue: string }
->('giphys/fetchGiphy', async function (offset, { rejectWithValue }) {
-  return await axios
-    .get(
-      `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=10&offset=${offset}`,
-    )
-    .then((res) => res.data.data)
-    .catch((err) => rejectWithValue(err.message))
-})
+>(
+  'trendingGifs/fetchTrendingGifs',
+  async function (offset, { rejectWithValue }) {
+    return await axios
+      .get(
+        `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=10&offset=${offset}`,
+      )
+      .then((res) => res.data.data)
+      .catch((err) => rejectWithValue(err.message))
+  },
+)
 
-const giphyssSlice = createSlice({
-  name: 'giphys',
+const trendingGifsSlice = createSlice({
+  name: 'trendingGifs',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -37,7 +40,7 @@ const giphyssSlice = createSlice({
         state.isLoading = false
         state.error = null
         state.offset = state.offset + 10
-        state.giphys.push(...action.payload)
+        state.trendingGifs.push(...action.payload)
       })
       .addCase(fetchTrendingGifs.rejected, (state, action) => {
         state.isLoading = false
@@ -46,4 +49,4 @@ const giphyssSlice = createSlice({
   },
 })
 
-export default giphyssSlice.reducer
+export default trendingGifsSlice.reducer

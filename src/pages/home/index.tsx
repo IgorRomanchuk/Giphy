@@ -7,18 +7,20 @@ import { fetchTrendingGifs } from '../../store/gifsSlice'
 import getRandomInt from '../../utils/getRandomInt'
 const Home = () => {
   const dispatch: any = useDispatch()
-  const gifs = useSelector((state: any) => state.gifs.giphys)
-  const offset = useSelector((state: any) => state.gifs.offset)
+  const trendingGifs = useSelector(
+    (state: any) => state.trendingGifs.trendingGifs,
+  )
+  const offset = useSelector((state: any) => state.trendingGifs.offset)
   const fetchData = () => {
     dispatch(fetchTrendingGifs(offset))
   }
 
   return (
     <>
-      {gifs && (
+      {trendingGifs && (
         <div>
           <InfiniteScroll
-            dataLength={gifs.length}
+            dataLength={trendingGifs.length}
             next={fetchData}
             hasMore={true}
             loader={<h4>Loading...</h4>}
@@ -29,7 +31,7 @@ const Home = () => {
             }
           >
             <Masonry columnsCount={4} gutter="10px">
-              {gifs.map((image: any, i: number) => {
+              {trendingGifs.map((image: any, i: number) => {
                 const num = getRandomInt(4)
                 return <CardGif key={i} index={num} image={image} />
               })}
