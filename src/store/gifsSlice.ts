@@ -2,8 +2,16 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { API_KEY } from '../constants'
+import { Gif } from '../types/Gif'
 
-const initialState: any = {
+interface TrendingGifsState {
+  trendingGifs: Gif[]
+  offset: number
+  isLoading: boolean
+  error: null | string
+}
+
+const initialState: TrendingGifsState = {
   trendingGifs: [],
   offset: 0,
   isLoading: false,
@@ -11,7 +19,7 @@ const initialState: any = {
 }
 
 export const fetchTrendingGifs = createAsyncThunk<
-  any,
+  Gif[],
   number,
   { rejectValue: string }
 >(
