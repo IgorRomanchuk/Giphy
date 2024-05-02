@@ -1,7 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const initialState: any = {
+import { Gif } from '../types/Gif'
+
+interface gifsBySearchValueState {
+  gifsBySearchValue: Gif[]
+  offset: number
+  isLoading: boolean
+  error: null | string
+}
+
+const initialState: gifsBySearchValueState = {
   gifsBySearchValue: [],
   offset: 0,
   isLoading: false,
@@ -9,8 +18,8 @@ const initialState: any = {
 }
 
 export const fetchGifsBySearchValue = createAsyncThunk<
-  any,
-  any,
+  Gif[],
+  { offset: number; searchValue: string },
   { rejectValue: string }
 >(
   'gifs/fetchGifsBySearchValue',
