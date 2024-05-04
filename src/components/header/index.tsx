@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { categories } from '../../constants'
+import {
+  fetchGifsBySearchValue,
+  resetGifs,
+  setValue,
+} from '../../store/gifsBySearchValueSlice'
 import s from './index.module.scss'
 import SearchContainer from './searchContainer'
 
@@ -8,6 +15,24 @@ const Header = () => {
   const [width, setWidth] = useState('firstWidth')
   const [headerPosition, setHeaderPosition] = useState('')
   const [logoPosition, setLogoPosition] = useState('firstPosition')
+
+  const dispatch: any = useDispatch()
+  const navigate = useNavigate()
+  const { searchValue } = useParams()
+
+  const navigateToHome = () => {
+    navigate('../')
+    dispatch(setValue(''))
+  }
+  const handleSearch = (value: string) => {
+    if (value !== searchValue) {
+      dispatch(resetGifs())
+      dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
+      dispatch(setValue(value))
+      navigate(`/${value}`)
+    }
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 50) {
@@ -30,16 +55,20 @@ const Header = () => {
       <header className={`${s.header} ${s[headerPosition]}`}>
         <div style={{ display: 'flex' }}>
           <img
-            className={s[logoPosition]}
+            className={`${s.logo} ${s[logoPosition]}`}
             src="/images/giphyLogo.png"
             alt=""
             width={170}
             height={50}
+            onClick={() => navigateToHome()}
           />
           <ul className={s.menu}>
             {categories.map((item: string) => (
               <li key={item}>
-                <button className={`${s.button} ${s[item.toLowerCase()]}`}>
+                <button
+                  className={`${s.button} ${s[item.toLowerCase()]}`}
+                  onClick={() => handleSearch(item.toLowerCase())}
+                >
                   <h2>{item}</h2>
                 </button>
               </li>

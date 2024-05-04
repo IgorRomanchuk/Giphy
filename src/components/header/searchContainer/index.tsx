@@ -14,6 +14,16 @@ const SearchContainer = ({ width }: IProps) => {
   const dispatch: any = useDispatch()
   const navigate = useNavigate()
   const value = useSelector((state: any) => state.gifsBySearchValue.value)
+
+  const handleSearch = () => {
+    if (value) {
+      dispatch(resetGifs())
+      dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
+      const url = value.replace(/ /g, '-')
+      navigate(`/${url}`)
+    }
+  }
+
   return (
     <div className={s.searchBarWrapper}>
       <div className={`${s.searchContainer} ${s[width]}`}>
@@ -23,19 +33,7 @@ const SearchContainer = ({ width }: IProps) => {
           type="text"
           placeholder="search"
         />
-        <div
-          className={s.searchIcon}
-          onClick={() => {
-            if (value) {
-              dispatch(resetGifs())
-              dispatch(
-                fetchGifsBySearchValue({ offset: 0, searchValue: value }),
-              )
-              const url = value.replace(/ /g, '-')
-              navigate(`/${url}`)
-            }
-          }}
-        >
+        <div className={s.searchIcon} onClick={() => handleSearch()}>
           <SearchIcon />
         </div>
       </div>
