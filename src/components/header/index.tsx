@@ -25,7 +25,7 @@ const Header = () => {
   )
 
   const navigateToHome = () => {
-    navigate('../')
+    navigate('/')
     dispatch(setValue(''))
     dispatch(resetGifs())
   }
