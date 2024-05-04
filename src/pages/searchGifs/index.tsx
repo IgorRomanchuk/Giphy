@@ -2,25 +2,31 @@ import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDispatch, useSelector } from 'react-redux'
 import Masonry from 'react-responsive-masonry'
+import { useParams } from 'react-router-dom'
 
 import CardGif from '../../components/cardGif'
+import { setValue } from '../../store/gifsBySearchValueSlice'
 import { fetchGifsBySearchValue } from '../../store/gifsBySearchValueSlice'
 import { Gif } from '../../types/Gif'
 import getRandomInt from '../../utils/getRandomInt'
+
 const SeatchGifs = () => {
   const dispatch: any = useDispatch()
+  const { searchValue } = useParams()
   const gifsBySearchValue = useSelector(
     (state: any) => state.gifsBySearchValue.gifsBySearchValue,
   )
   const offset = useSelector((state: any) => state.gifsBySearchValue.offset)
+  const value = useSelector((state: any) => state.gifsBySearchValue.value)
   const fetchData = () => {
-    dispatch(fetchGifsBySearchValue({ offset, searchValue: 'Artist' }))
+    dispatch(fetchGifsBySearchValue({ offset, searchValue: value }))
   }
 
   useEffect(() => {
     const promise = dispatch(
-      fetchGifsBySearchValue({ offset: 0, searchValue: 'Artist' }),
+      fetchGifsBySearchValue({ offset: 0, searchValue: searchValue }),
     )
+    dispatch(setValue(searchValue))
     return () => {
       promise?.abort()
     }
@@ -48,7 +54,6 @@ const SeatchGifs = () => {
               })}
             </Masonry>
           </InfiniteScroll>
-          <div>Search Gif</div>
         </div>
       )}
     </>

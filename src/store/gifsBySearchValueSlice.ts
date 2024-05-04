@@ -9,6 +9,7 @@ interface gifsBySearchValueState {
   offset: number
   isLoading: boolean
   error: null | string
+  value: string
 }
 
 const initialState: gifsBySearchValueState = {
@@ -16,11 +17,12 @@ const initialState: gifsBySearchValueState = {
   offset: 0,
   isLoading: false,
   error: null,
+  value: '',
 }
 
 export const fetchGifsBySearchValue = createAsyncThunk<
   Gif[],
-  { offset: number; searchValue: string },
+  { offset: number; searchValue: string | any },
   { rejectValue: string }
 >(
   'gifs/fetchGifsBySearchValue',
@@ -42,7 +44,15 @@ export const fetchGifsBySearchValue = createAsyncThunk<
 const gifsBySearchValueSlice = createSlice({
   name: 'gifs',
   initialState,
-  reducers: {},
+  reducers: {
+    setValue: (state, action) => {
+      state.value = action.payload
+    },
+    resetGifs: (state) => {
+      state.gifsBySearchValue = []
+      state.offset = state.offset - 10
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGifsBySearchValue.pending, (state) => {
@@ -61,5 +71,7 @@ const gifsBySearchValueSlice = createSlice({
       })
   },
 })
+
+export const { setValue, resetGifs } = gifsBySearchValueSlice.actions
 
 export default gifsBySearchValueSlice.reducer
