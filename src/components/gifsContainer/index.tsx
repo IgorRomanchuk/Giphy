@@ -5,11 +5,6 @@ import CardGif from '../../components/cardGif'
 import { Gif } from '../../types/Gif'
 import getRandomInt from '../../utils/getRandomInt'
 const GifsContainer = ({ gifsArray, fetchData }: any) => {
-  // const offset = useSelector((state: any) => state.trendingGifs.offset)
-  // const fetchData = () => {
-  //   dispatch(fetchTrendingGifs(offset))
-  // }
-
   return (
     <>
       {gifsArray && (
