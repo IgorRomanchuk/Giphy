@@ -23,6 +23,7 @@ const Header = () => {
   const navigateToHome = () => {
     navigate('../')
     dispatch(setValue(''))
+    dispatch(resetGifs())
   }
   const handleSearch = (value: string) => {
     if (value !== searchValue) {
