@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { categories } from '../../constants'
@@ -20,12 +20,20 @@ const Header = () => {
   const navigate = useNavigate()
   const { searchValue } = useParams()
 
+  const gifsBySearchValue = useSelector(
+    (state: any) => state.gifsBySearchValue.gifsBySearchValue,
+  )
+
   const navigateToHome = () => {
     navigate('../')
     dispatch(setValue(''))
     dispatch(resetGifs())
   }
   const handleSearch = (value: string) => {
+    if (!gifsBySearchValue.length) {
+      navigate(`/${value}`)
+      return null
+    }
     if (value !== searchValue) {
       dispatch(resetGifs())
       dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
