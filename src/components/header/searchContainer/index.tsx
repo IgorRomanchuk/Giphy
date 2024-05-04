@@ -14,8 +14,15 @@ const SearchContainer = ({ width }: IProps) => {
   const dispatch: any = useDispatch()
   const navigate = useNavigate()
   const value = useSelector((state: any) => state.gifsBySearchValue.value)
+  const gifsBySearchValue = useSelector(
+    (state: any) => state.gifsBySearchValue.gifsBySearchValue,
+  )
 
   const handleSearch = () => {
+    if (!gifsBySearchValue.length) {
+      navigate(`/${value}`)
+      return null
+    }
     if (value) {
       dispatch(resetGifs())
       dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
