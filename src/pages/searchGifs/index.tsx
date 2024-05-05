@@ -1,19 +1,18 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import GifsContainer from '../../components/gifsContainer'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import { setValue } from '../../store/gifsBySearchValueSlice'
 import { fetchGifsBySearchValue } from '../../store/gifsBySearchValueSlice'
 
 const SeatchGifs = () => {
-  const dispatch: any = useDispatch()
+  const dispatch = useAppDispatch()
   const { searchValue } = useParams()
-  const gifsBySearchValue = useSelector(
-    (state: any) => state.gifsBySearchValue.gifsBySearchValue,
+  const { gifsBySearchValue, offset, value } = useAppSelector(
+    (state) => state.gifsBySearchValue,
   )
-  const offset = useSelector((state: any) => state.gifsBySearchValue.offset)
-  const value = useSelector((state: any) => state.gifsBySearchValue.value)
+
   const fetchData = () => {
     dispatch(fetchGifsBySearchValue({ offset, searchValue: value }))
   }

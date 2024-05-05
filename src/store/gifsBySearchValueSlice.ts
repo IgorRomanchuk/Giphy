@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { API_KEY } from '../constants'
@@ -22,7 +22,7 @@ const initialState: gifsBySearchValueState = {
 
 export const fetchGifsBySearchValue = createAsyncThunk<
   Gif[],
-  { offset: number; searchValue: string | any },
+  { offset: number; searchValue: string | undefined },
   { rejectValue: string }
 >(
   'gifs/fetchGifsBySearchValue',
@@ -45,8 +45,8 @@ const gifsBySearchValueSlice = createSlice({
   name: 'gifs',
   initialState,
   reducers: {
-    setValue: (state, action) => {
-      state.value = action.payload
+    setValue: (state, action: PayloadAction<string | undefined>) => {
+      state.value = action.payload || ''
     },
     resetGifs: (state) => {
       state.gifsBySearchValue = []

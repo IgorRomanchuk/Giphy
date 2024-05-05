@@ -1,14 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux'
-
 import GifsContainer from '../../components/gifsContainer'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import { fetchTrendingGifs } from '../../store/gifsSlice'
 
 const Home = () => {
-  const dispatch: any = useDispatch()
-  const trendingGifs = useSelector(
-    (state: any) => state.trendingGifs.trendingGifs,
-  )
-  const offset = useSelector((state: any) => state.trendingGifs.offset)
+  const dispatch = useAppDispatch()
+
+  const { offset, trendingGifs } = useAppSelector((state) => state.trendingGifs)
+
   const fetchData = () => {
     dispatch(fetchTrendingGifs(offset))
   }

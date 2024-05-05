@@ -4,7 +4,13 @@ import Masonry from 'react-responsive-masonry'
 import CardGif from '../../components/cardGif'
 import { Gif } from '../../types/Gif'
 import getRandomInt from '../../utils/getRandomInt'
-const GifsContainer = ({ gifsArray, fetchData }: any) => {
+
+interface IProps {
+  gifsArray: Gif[]
+  fetchData: () => void
+}
+
+const GifsContainer = ({ gifsArray, fetchData }: IProps) => {
   return (
     <>
       {gifsArray && (

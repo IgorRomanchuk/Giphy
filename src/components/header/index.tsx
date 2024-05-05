@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { categories } from '../../constants'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import {
   fetchGifsBySearchValue,
   resetGifs,
@@ -16,12 +16,12 @@ const Header = () => {
   const [headerPosition, setHeaderPosition] = useState('')
   const [logoPosition, setLogoPosition] = useState('firstPosition')
 
-  const dispatch: any = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { searchValue } = useParams()
 
-  const gifsBySearchValue = useSelector(
-    (state: any) => state.gifsBySearchValue.gifsBySearchValue,
+  const gifsBySearchValue = useAppSelector(
+    (state) => state.gifsBySearchValue.gifsBySearchValue,
   )
 
   const navigateToHome = () => {
