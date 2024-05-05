@@ -4,6 +4,7 @@ import Masonry from 'react-responsive-masonry'
 import CardGif from '../../components/cardGif'
 import { Gif } from '../../types/Gif'
 import getRandomInt from '../../utils/getRandomInt'
+import Loader from '../loading'
 
 interface IProps {
   gifsArray: Gif[]
@@ -19,7 +20,7 @@ const GifsContainer = ({ gifsArray, fetchData }: IProps) => {
             dataLength={gifsArray.length}
             next={fetchData}
             hasMore={true}
-            loader={<h4>Loading...</h4>}
+            loader={<Loader />}
             endMessage={
               <p style={{ textAlign: 'center' }}>
                 <b>Yay! You have seen it all</b>
