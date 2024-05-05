@@ -37,7 +37,12 @@ export const fetchTrendingGifs = createAsyncThunk<
 const trendingGifsSlice = createSlice({
   name: 'trendingGifs',
   initialState,
-  reducers: {},
+  reducers: {
+    resetTrendingGifs: (state) => {
+      state.trendingGifs = []
+      state.offset = state.offset - 10
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTrendingGifs.pending, (state) => {
@@ -56,5 +61,7 @@ const trendingGifsSlice = createSlice({
       })
   },
 })
+
+export const { resetTrendingGifs } = trendingGifsSlice.actions
 
 export default trendingGifsSlice.reducer

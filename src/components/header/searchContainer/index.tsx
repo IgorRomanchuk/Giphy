@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { fetchGifsBySearchValue } from '../../../store/gifsBySearchValueSlice'
 import { resetGifs, setValue } from '../../../store/gifsBySearchValueSlice'
+import { resetTrendingGifs } from '../../../store/gifsSlice'
 import s from './searchContainer.module.scss'
 
 interface IProps {
@@ -17,8 +18,11 @@ const SearchContainer = ({ width }: IProps) => {
     (state) => state.gifsBySearchValue,
   )
 
+  const { trendingGifs } = useAppSelector((state) => state.trendingGifs)
+
   const handleSearch = () => {
     if (!gifsBySearchValue.length) {
+      dispatch(resetTrendingGifs())
       navigate(`/${value}`)
       return null
     }

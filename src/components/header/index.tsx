@@ -8,6 +8,7 @@ import {
   resetGifs,
   setValue,
 } from '../../store/gifsBySearchValueSlice'
+import { resetTrendingGifs } from '../../store/gifsSlice'
 import s from './index.module.scss'
 import SearchContainer from './searchContainer'
 
@@ -31,6 +32,7 @@ const Header = () => {
   }
   const handleSearch = (value: string) => {
     if (!gifsBySearchValue.length) {
+      dispatch(resetTrendingGifs())
       navigate(`/${value}`)
       return null
     }
