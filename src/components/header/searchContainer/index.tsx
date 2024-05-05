@@ -18,8 +18,6 @@ const SearchContainer = ({ width }: IProps) => {
     (state) => state.gifsBySearchValue,
   )
 
-  const { trendingGifs } = useAppSelector((state) => state.trendingGifs)
-
   const handleSearch = () => {
     if (!gifsBySearchValue.length) {
       dispatch(resetTrendingGifs())
