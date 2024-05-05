@@ -27,7 +27,7 @@ export const fetchTrendingGifs = createAsyncThunk<
   async function (offset, { rejectWithValue }) {
     return await axios
       .get(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=10&offset=${offset}`,
+        `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=12&offset=${offset}`,
       )
       .then((res) => res.data.data)
       .catch((err) => rejectWithValue(err.message))
@@ -40,7 +40,7 @@ const trendingGifsSlice = createSlice({
   reducers: {
     resetTrendingGifs: (state) => {
       state.trendingGifs = []
-      state.offset = state.offset - 10
+      state.offset = state.offset - 12
     },
   },
   extraReducers: (builder) => {
@@ -52,7 +52,7 @@ const trendingGifsSlice = createSlice({
       .addCase(fetchTrendingGifs.fulfilled, (state, action) => {
         state.isLoading = false
         state.error = null
-        state.offset = state.offset + 10
+        state.offset = state.offset + 12
         state.trendingGifs.push(...action.payload)
       })
       .addCase(fetchTrendingGifs.rejected, (state, action) => {

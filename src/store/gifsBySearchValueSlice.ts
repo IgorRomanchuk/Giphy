@@ -32,7 +32,7 @@ export const fetchGifsBySearchValue = createAsyncThunk<
         params: {
           api_key: API_KEY,
           q: searchValue,
-          limit: 10,
+          limit: 12,
           offset: offset,
         },
       })
@@ -50,7 +50,7 @@ const gifsBySearchValueSlice = createSlice({
     },
     resetGifs: (state) => {
       state.gifsBySearchValue = []
-      state.offset = state.offset - 10
+      state.offset = state.offset - 12
     },
   },
   extraReducers: (builder) => {
@@ -62,7 +62,7 @@ const gifsBySearchValueSlice = createSlice({
       .addCase(fetchGifsBySearchValue.fulfilled, (state, action) => {
         state.isLoading = false
         state.error = null
-        state.offset = state.offset + 10
+        state.offset = state.offset + 12
         state.gifsBySearchValue.push(...action.payload)
       })
       .addCase(fetchGifsBySearchValue.rejected, (state, action) => {
