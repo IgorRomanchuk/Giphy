@@ -20,7 +20,7 @@ const GifsContainer = ({ gifsArray, fetchData }: IProps) => {
     if (screenSize.height && document.body.scrollHeight < screenSize.height) {
       fetchData()
     }
-  }, [gifsArray.length])
+  }, [gifsArray.length, screenSize])
 
   return (
     <>
