@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { categories } from '../../constants'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
+import useScreenSize from '../../hooks/useScreenSize'
 import {
   fetchGifsBySearchValue,
   resetGifs,
@@ -21,6 +22,8 @@ const Header = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { searchValue } = useParams()
+
+  const screenSize = useScreenSize()
 
   const gifsBySearchValue = useAppSelector(
     (state) => state.gifsBySearchValue.gifsBySearchValue,
@@ -46,6 +49,12 @@ const Header = () => {
   }
 
   useEffect(() => {
+    if (screenSize.width && screenSize.width <= 830) {
+      setWidth('firstWidth')
+      setHeaderPosition('firstHeaderPosition')
+      setLogoPosition('firstLogoPosition')
+      return
+    }
     const handleScroll = () => {
       if (window.scrollY >= 50) {
         setWidth('secondWidth')
@@ -61,11 +70,17 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [screenSize.width])
   return (
     <>
       <header className={`${s.header} ${s[headerPosition]}`}>
-        <div style={{ display: 'flex', maxWidth: '1080px' }}>
+        <div
+          style={{
+            display: 'flex',
+            maxWidth: '1080px',
+            backgroundColor: 'black',
+          }}
+        >
           <img
             className={`${s.logo} ${s[logoPosition]}`}
             src="/images/giphyLogo.png"
