@@ -1,7 +1,9 @@
+import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 import CardGif from '../../components/cardGif'
+import useScreenSize from '../../hooks/useScreenSize'
 import { Gif } from '../../types/Gif'
 import getRandomInt from '../../utils/getRandomInt'
 import Loader from '../loading'
@@ -12,6 +14,14 @@ interface IProps {
 }
 
 const GifsContainer = ({ gifsArray, fetchData }: IProps) => {
+  const screenSize = useScreenSize()
+
+  useEffect(() => {
+    if (screenSize.height && document.body.scrollHeight < screenSize.height) {
+      fetchData()
+    }
+  }, [gifsArray.length])
+
   return (
     <>
       {gifsArray && (
