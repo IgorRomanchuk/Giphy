@@ -1,6 +1,6 @@
 .searchBarWrapper {
   top: 0;
-  width: 1080px;
+  max-width: 1080px;
   display: flex;
   height: 50px;
   align-items: center;
@@ -37,7 +37,7 @@ input {
 }
 
 .secondWidth {
-  width: 915px;
+  width: calc(100% - 170px);
   position: relative;
 }
 
@@ -52,5 +52,11 @@ input {
   border-radius: 0 5px 5px 0;
   svg {
     font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .searchBarWrapper {
+    width: calc(100% - 170px)
   }
 }

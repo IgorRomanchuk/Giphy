@@ -64,7 +64,7 @@ const Header = () => {
   return (
     <>
       <header className={`${s.header} ${s[headerPosition]}`}>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', maxWidth: '1080px' }}>
           <img
             className={`${s.logo} ${s[logoPosition]}`}
             src="/images/giphyLogo.png"

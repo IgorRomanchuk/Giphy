@@ -1,6 +1,7 @@
 .header {
   position: absolute;
   top: 0px;
+  width: 100%;
 }
 
 .logo{
@@ -124,4 +125,18 @@
 }
 .entertainment:hover {
   background: linear-gradient(86deg, rgba(207,41,228,1) 12%, rgba(176,12,201,1) 46%, rgba(190,15,212,1) 78%);
+}
+
+@media screen and (max-width: 830px) {
+  .header {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .fakeDiv {
+    height: 55px;
+  }
 }
