@@ -1,7 +1,8 @@
 import SearchIcon from '@mui/icons-material/Search'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../../hooks'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppSelector } from '../../../hooks/useAppSelector'
 import { fetchGifsBySearchValue } from '../../../store/gifsBySearchValueSlice'
 import { resetGifs, setValue } from '../../../store/gifsBySearchValueSlice'
 import { resetTrendingGifs } from '../../../store/gifsSlice'

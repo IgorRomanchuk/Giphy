@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 
 import GifsContainer from '../../components/gifsContainer'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import { fetchTrendingGifs } from '../../store/gifsSlice'
 
 const Home = () => {

@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import GifsContainer from '../../components/gifsContainer'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import { setValue } from '../../store/gifsBySearchValueSlice'
 import { fetchGifsBySearchValue } from '../../store/gifsBySearchValueSlice'
 

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { categories } from '../../constants'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import {
   fetchGifsBySearchValue,
   resetGifs,
