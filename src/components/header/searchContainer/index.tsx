@@ -33,10 +33,17 @@ const SearchContainer = ({ width }: IProps) => {
     }
   }
 
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  }
+
   return (
     <div className={s.searchBarWrapper}>
       <div className={`${s.searchContainer} ${s[width]}`}>
         <input
+          onKeyDown={handleKeyDown}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             dispatch(setValue(e.target.value))
           }

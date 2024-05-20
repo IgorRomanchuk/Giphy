@@ -8,7 +8,9 @@ import { fetchTrendingGifs } from '../../store/gifsSlice'
 const Home = () => {
   const dispatch = useAppDispatch()
 
-  const { offset, trendingGifs } = useAppSelector((state) => state.trendingGifs)
+  const { offset, trendingGifs, error } = useAppSelector(
+    (state) => state.trendingGifs,
+  )
 
   const fetchData = () => {
     dispatch(fetchTrendingGifs(offset))
@@ -23,7 +25,11 @@ const Home = () => {
 
   return (
     <>
-      <GifsContainer fetchData={fetchData} gifsArray={trendingGifs} />
+      <GifsContainer
+        fetchData={fetchData}
+        gifsArray={trendingGifs}
+        error={error}
+      />
     </>
   )
 }

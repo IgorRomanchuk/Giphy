@@ -11,16 +11,16 @@ import Loader from '../loading'
 interface IProps {
   gifsArray: Gif[]
   fetchData: () => void
+  error?: string | null
 }
 
-const GifsContainer = ({ gifsArray, fetchData }: IProps) => {
+const GifsContainer = ({ gifsArray, fetchData, error }: IProps) => {
   const screenSize = useScreenSize()
-
   useEffect(() => {
     if (screenSize.height && document.body.scrollHeight < screenSize.height) {
       fetchData()
     }
-  }, [gifsArray.length, screenSize])
+  }, [gifsArray.length])
 
   return (
     <>
@@ -29,12 +29,18 @@ const GifsContainer = ({ gifsArray, fetchData }: IProps) => {
           <InfiniteScroll
             dataLength={gifsArray.length}
             next={fetchData}
-            hasMore={true}
+            hasMore={!error}
             loader={<Loader />}
             endMessage={
-              <p style={{ textAlign: 'center' }}>
-                <b>Yay! You have seen it all</b>
-              </p>
+              <h3
+                style={{
+                  color: 'white',
+                  paddingTop: '20px',
+                  textAlign: 'center',
+                }}
+              >
+                {error} please come back later
+              </h3>
             }
           >
             <ResponsiveMasonry

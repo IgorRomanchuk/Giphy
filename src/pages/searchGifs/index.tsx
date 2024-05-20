@@ -10,7 +10,7 @@ import { fetchGifsBySearchValue } from '../../store/gifsBySearchValueSlice'
 const SeatchGifs = () => {
   const dispatch = useAppDispatch()
   const { searchValue } = useParams()
-  const { gifsBySearchValue, offset, value } = useAppSelector(
+  const { gifsBySearchValue, offset, value, error } = useAppSelector(
     (state) => state.gifsBySearchValue,
   )
 
@@ -30,7 +30,11 @@ const SeatchGifs = () => {
 
   return (
     <>
-      <GifsContainer fetchData={fetchData} gifsArray={gifsBySearchValue} />
+      <GifsContainer
+        fetchData={fetchData}
+        gifsArray={gifsBySearchValue}
+        error={error}
+      />
     </>
   )
 }
