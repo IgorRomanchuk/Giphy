@@ -1,9 +1,12 @@
 import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+import { useNavigate } from 'react-router-dom'
 
 import CardGif from '../../components/cardGif'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 import useScreenSize from '../../hooks/useScreenSize'
+import { setGif } from '../../store/gifSlice'
 import { Gif } from '../../types/Gif'
 import getRandomInt from '../../utils/getRandomInt'
 import Loader from '../loading'
@@ -15,6 +18,8 @@ interface IProps {
 }
 
 const GifsContainer = ({ gifsArray, fetchData, error }: IProps) => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const screenSize = useScreenSize()
   useEffect(() => {
     if (screenSize.height && document.body.scrollHeight < screenSize.height) {
@@ -49,7 +54,18 @@ const GifsContainer = ({ gifsArray, fetchData, error }: IProps) => {
               <Masonry gutter="10px">
                 {gifsArray.map((image: Gif, i: number) => {
                   const num = getRandomInt(4)
-                  return <CardGif key={i} index={num} image={image} />
+                  return (
+                    <div
+                      onClick={() => {
+                        dispatch(setGif(image))
+                        navigate(`gifs/${image.id}`)
+                        console.log(image)
+                      }}
+                      key={i}
+                    >
+                      <CardGif index={num} image={image} />
+                    </div>
+                  )
                 })}
               </Masonry>
             </ResponsiveMasonry>

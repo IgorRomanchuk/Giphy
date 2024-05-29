@@ -3,7 +3,7 @@ import { Gif } from '../../types/Gif'
 
 interface IProps {
   image: Gif
-  index: number
+  index?: number
 }
 
 const CardGif = ({ image, index }: IProps) => {
@@ -17,7 +17,7 @@ const CardGif = ({ image, index }: IProps) => {
         height: '100%',
         display: 'block',
         borderRadius: '10px',
-        backgroundColor: colors[index],
+        backgroundColor: `${index && colors[index]}`,
       }}
     />
   )
