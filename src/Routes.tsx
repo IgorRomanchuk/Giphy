@@ -17,7 +17,7 @@ function Routes() {
           element: <Home />,
         },
         {
-          path: '/:searchValue',
+          path: '/search/:searchValue',
           element: <SeatchGifs />,
         },
         {

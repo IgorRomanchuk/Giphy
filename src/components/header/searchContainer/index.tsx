@@ -22,14 +22,14 @@ const SearchContainer = ({ width }: IProps) => {
   const handleSearch = () => {
     if (!gifsBySearchValue.length) {
       dispatch(resetTrendingGifs())
-      navigate(`/${value}`)
+      navigate(`/search/${value}`)
       return null
     }
     if (value) {
       dispatch(resetGifs())
       dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
       const url = value.replace(/ /g, '-')
-      navigate(`/${url}`)
+      navigate(`/search/${url}`)
     }
   }
 

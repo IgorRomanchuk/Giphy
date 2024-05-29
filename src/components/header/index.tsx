@@ -37,14 +37,14 @@ const Header = () => {
   const handleSearch = (value: string) => {
     if (!gifsBySearchValue.length) {
       dispatch(resetTrendingGifs())
-      navigate(`/${value}`)
+      navigate(`/search/${value}`)
       return null
     }
     if (value !== searchValue) {
       dispatch(resetGifs())
       dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
       dispatch(setValue(value))
-      navigate(`/${value}`)
+      navigate(`/search/${value}`)
     }
   }
 
