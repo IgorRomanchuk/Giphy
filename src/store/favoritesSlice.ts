@@ -16,7 +16,6 @@ const favoritesSlice = createSlice({
   reducers: {
     setGif: (state, action) => {
       state.favorites.push(action.payload)
-      // just check
     },
   },
 })
