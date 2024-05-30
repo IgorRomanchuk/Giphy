@@ -56,10 +56,10 @@ const GifsContainer = ({ gifsArray, fetchData, error }: IProps) => {
                   const num = getRandomInt(4)
                   return (
                     <div
+                      style={{ cursor: 'pointer' }}
                       onClick={() => {
                         dispatch(setGif(image))
                         navigate(`gifs/${image.id}`)
-                        console.log(image)
                       }}
                       key={i}
                     >
