@@ -29,6 +29,7 @@ const Home = () => {
         fetchData={fetchData}
         gifsArray={trendingGifs}
         error={error}
+        directory={'gifs'}
       />
     </>
   )

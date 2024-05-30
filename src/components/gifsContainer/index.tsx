@@ -15,9 +15,10 @@ interface IProps {
   gifsArray: Gif[]
   fetchData: () => void
   error?: string | null
+  directory: string
 }
 
-const GifsContainer = ({ gifsArray, fetchData, error }: IProps) => {
+const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const screenSize = useScreenSize()
@@ -59,7 +60,7 @@ const GifsContainer = ({ gifsArray, fetchData, error }: IProps) => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
                         dispatch(setGif(image))
-                        navigate(`gifs/${image.id}`)
+                        navigate(`${directory}/${image.id}`)
                       }}
                       key={i}
                     >
