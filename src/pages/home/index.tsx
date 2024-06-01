@@ -30,6 +30,7 @@ const Home = () => {
         gifsArray={trendingGifs}
         error={error}
         directory={'gifs'}
+        opacity={true}
       />
     </>
   )

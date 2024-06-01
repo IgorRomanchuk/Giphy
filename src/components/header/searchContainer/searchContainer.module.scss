@@ -15,7 +15,6 @@
 }
 
 input {
-  width: 100%;
   flex: 1;
   padding-left: 10px;
   height: 48px;
@@ -56,14 +55,18 @@ input {
   }
 }
 
-@media screen and (max-width: 830px) {
-  .searchBarWrapper {
-    width: calc(100% - 170px)
+@media screen and (max-width: 500px) {
+  .secondLogoPosition {
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+  .secondWidth {
+    width: 100%
   }
 }
 
-@media screen and (max-width: 485px) {
-  .searchBarWrapper {
-    width: 100%
-  }
+@media screen and (max-width: 330px) {
+ input {
+  font-size: 16px;
+ }
 }

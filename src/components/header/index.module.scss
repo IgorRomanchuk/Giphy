@@ -57,6 +57,28 @@
   }
 }
 
+.favoritesButton {
+  color: white;
+  display: flex;
+  align-content: center;
+  height: 39px;
+  background-color: rgb(62, 62, 62);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  display: block;
+  overflow: hidden;
+}
+
+.imageScale {
+  transform:scale(1.5);
+  height: 35px;
+  width: 39px;
+  transform-origin: 50% 40%;
+}
+
 .sports::after {
   position: absolute;
   bottom: 0;
@@ -127,10 +149,15 @@
   background: linear-gradient(86deg, rgba(207,41,228,1) 12%, rgba(176,12,201,1) 46%, rgba(190,15,212,1) 78%);
 }
 
+@media screen and (max-width: 890px) {
+  .button h2 {
+    font-size: 13px;
+  }
+}
+
 @media screen and (max-width: 830px) {
-  .header {
-    display: flex;
-    position: fixed;
+  .header div {
+    justify-content: space-between;
   }
 
   .menu {
@@ -142,12 +169,24 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .secondLogoPosition {
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+
 @media screen and (max-width: 485px) {
   .header {
     flex-direction: column;
   }
 
   .logo {
-    margin: 0 auto;
+    transform: translate(-10px) scale(0.8);
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .logo {
+    transform: translate(-20px) scale(0.65);
   }
 }

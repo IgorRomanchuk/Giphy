@@ -1,0 +1,17 @@
+.title {
+  color: white;
+  font-weight: 600;
+  span {
+    color: #e46363;
+  }
+  p:nth-child(2) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .title {
+    margin-top: 70px;
+  }
+}

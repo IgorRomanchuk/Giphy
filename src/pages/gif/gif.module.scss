@@ -5,7 +5,8 @@
   margin-top: 10px;
 }
 
-.download {
+.button {
+  display: flex;
   color: rgba(216, 216, 216, 0.849);
   cursor: pointer;
   font-weight: 700;
@@ -15,6 +16,24 @@
   &:hover {
     color: rgb(233, 228, 228);
   }
+}
+
+.ITY {
+  width: 36px;
+  height: 36px;
+  background: url(../../../public/images/favorite.png) 0px -40px / 240px 80px no-repeat transparent;
+  overflow: hidden;
+  position: relative;
+  animation: 0.3s steps(5) 0s 1 normal none running gDgRmj;
+}
+
+.gVRblV {
+  width: 36px;
+  height: 36px;
+  background: url(../../../public/images/favorite.png) 0px 0px / 240px 80px no-repeat transparent;
+  overflow: hidden;
+  position: relative;
+  animation: 0.5s steps(5) 0s 1 normal none running hhxyjv;
 }
 
 @media screen and (max-width: 485px) {

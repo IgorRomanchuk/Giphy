@@ -4,6 +4,7 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import { useNavigate } from 'react-router-dom'
 
 import CardGif from '../../components/cardGif'
+import { colors } from '../../constants'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import useScreenSize from '../../hooks/useScreenSize'
 import { setGif } from '../../store/gifSlice'
@@ -14,11 +15,18 @@ import Loader from '../loading'
 interface IProps {
   gifsArray: Gif[]
   fetchData: () => void
-  error?: string | null
+  error?: string | null | boolean
   directory: string
+  opacity: boolean
 }
 
-const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
+const GifsContainer = ({
+  gifsArray,
+  fetchData,
+  error,
+  directory,
+  opacity,
+}: IProps) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const screenSize = useScreenSize()
@@ -43,6 +51,7 @@ const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
                   color: 'white',
                   paddingTop: '20px',
                   textAlign: 'center',
+                  opacity: `${opacity ? 1 : 0}`,
                 }}
               >
                 {error} please come back later
@@ -57,7 +66,14 @@ const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
                   const num = getRandomInt(4)
                   return (
                     <div
-                      style={{ cursor: 'pointer' }}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'block',
+                        borderRadius: '10px',
+                        cursor: 'pointer',
+                        backgroundColor: `${num && colors[num]}`,
+                      }}
                       onClick={() => {
                         dispatch(setGif(image))
                         navigate(`${directory}/${image.id}`)

@@ -35,6 +35,7 @@ const SeatchGifs = () => {
         gifsArray={gifsBySearchValue}
         error={error}
         directory={'../gifs'}
+        opacity={true}
       />
     </>
   )

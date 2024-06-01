@@ -18,6 +18,7 @@ const Header = () => {
   const [width, setWidth] = useState('firstWidth')
   const [headerPosition, setHeaderPosition] = useState('')
   const [logoPosition, setLogoPosition] = useState('firstPosition')
+  const [imageHover, setImageHover] = useState<boolean>(false)
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -49,12 +50,6 @@ const Header = () => {
   }
 
   useEffect(() => {
-    if (screenSize.width && screenSize.width <= 830) {
-      setWidth('firstWidth')
-      setHeaderPosition('firstHeaderPosition')
-      setLogoPosition('firstLogoPosition')
-      return
-    }
     const handleScroll = () => {
       if (window.scrollY >= 50) {
         setWidth('secondWidth')
@@ -101,6 +96,23 @@ const Header = () => {
               </li>
             ))}
           </ul>
+          <button
+            className={s.favoritesButton}
+            onMouseOver={() => setImageHover(true)}
+            onMouseLeave={() => setImageHover(false)}
+            onClick={() => navigate('/favorites')}
+          >
+            <div className={s.imageWrapper}>
+              <img
+                src="/images/80h.gif"
+                alt=""
+                height={39}
+                width={39}
+                className={`${imageHover ? s.imageScale : s.image}`}
+              />
+            </div>
+            <h2 style={{ fontSize: '16px', margin: 'auto 10px' }}>Favorites</h2>
+          </button>
         </div>
         <SearchContainer width={width} />
       </header>
