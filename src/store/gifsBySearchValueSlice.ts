@@ -10,6 +10,7 @@ interface gifsBySearchValueState {
   isLoading: boolean
   error: null | string
   value: string
+  pagination: { total_count: number; count: number; offset: number } | null
 }
 
 const initialState: gifsBySearchValueState = {
@@ -18,10 +19,11 @@ const initialState: gifsBySearchValueState = {
   isLoading: false,
   error: null,
   value: '',
+  pagination: null,
 }
 
 export const fetchGifsBySearchValue = createAsyncThunk<
-  Gif[],
+  any,
   { offset: number; searchValue: string | undefined },
   { rejectValue: string }
 >(
@@ -36,7 +38,7 @@ export const fetchGifsBySearchValue = createAsyncThunk<
           offset: offset,
         },
       })
-      .then((res) => res.data.data)
+      .then((res) => res.data)
       .catch((err) => rejectWithValue(err.message))
   },
 )
@@ -63,10 +65,12 @@ const gifsBySearchValueSlice = createSlice({
         state.isLoading = false
         state.error = null
         state.offset = state.offset + 12
-        state.gifsBySearchValue.push(...action.payload)
+        state.pagination = action.payload.pagination
+        state.gifsBySearchValue.push(...action.payload.data)
       })
       .addCase(fetchGifsBySearchValue.rejected, (state, action) => {
         state.isLoading = false
+        state.pagination = null
         state.error = action.payload as string
       })
   },

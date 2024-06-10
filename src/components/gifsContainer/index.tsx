@@ -18,6 +18,7 @@ interface IProps {
   error?: string | null | boolean
   directory: string
   opacity: boolean
+  pagination?: any
 }
 
 const GifsContainer = ({
@@ -26,11 +27,13 @@ const GifsContainer = ({
   error,
   directory,
   opacity,
+  pagination,
 }: IProps) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const screenSize = useScreenSize()
   useEffect(() => {
+    if (pagination?.total_count === pagination?.count) return
     if (screenSize.height && document.body.scrollHeight < screenSize.height) {
       fetchData()
     }
@@ -44,7 +47,7 @@ const GifsContainer = ({
             dataLength={gifsArray.length}
             next={fetchData}
             hasMore={!error}
-            loader={<Loader />}
+            loader={pagination?.total_count !== gifsArray.length && <Loader />}
             endMessage={
               <h3
                 style={{

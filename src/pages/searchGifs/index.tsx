@@ -10,9 +10,8 @@ import { fetchGifsBySearchValue } from '../../store/gifsBySearchValueSlice'
 const SeatchGifs = () => {
   const dispatch = useAppDispatch()
   const { searchValue } = useParams()
-  const { gifsBySearchValue, offset, value, error } = useAppSelector(
-    (state) => state.gifsBySearchValue,
-  )
+  const { gifsBySearchValue, offset, value, error, pagination } =
+    useAppSelector((state) => state.gifsBySearchValue)
 
   const fetchData = () => {
     dispatch(fetchGifsBySearchValue({ offset, searchValue: value }))
@@ -36,6 +35,7 @@ const SeatchGifs = () => {
         error={error}
         directory={'../gifs'}
         opacity={true}
+        pagination={pagination}
       />
     </>
   )
