@@ -17,6 +17,7 @@ const Home = () => {
   }
 
   useEffect(() => {
+    if (trendingGifs.length) return
     const promise = dispatch(fetchTrendingGifs(0))
     return () => {
       promise?.abort()

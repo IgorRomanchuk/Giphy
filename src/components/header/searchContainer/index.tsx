@@ -21,7 +21,7 @@ const SearchContainer = ({ width }: IProps) => {
 
   const handleSearch = () => {
     if (!gifsBySearchValue.length) {
-      dispatch(resetTrendingGifs())
+      // dispatch(resetTrendingGifs())
       navigate(`/search/${value}`)
       return null
     }
