@@ -68,7 +68,10 @@ const Header = () => {
   }, [screenSize.width])
   return (
     <>
-      <header className={`${s.header} ${s[headerPosition]}`}>
+      <header
+        // style={window.scrollY >= 50 ? { width: '100%' } : {}}
+        className={`${s.header} ${s[headerPosition]}`}
+      >
         <div
           style={{
             display: 'flex',
