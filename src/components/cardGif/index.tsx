@@ -9,6 +9,7 @@ interface IProps {
 const CardGif = ({ image, index }: IProps) => {
   return (
     <img
+      loading="lazy"
       src={image.images.original.url}
       width={image.images.original.width}
       height={image.images.original.height}
