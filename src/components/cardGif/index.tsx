@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { colors } from '../../constants'
 import { Gif } from '../../types/Gif'
 
@@ -7,9 +9,12 @@ interface IProps {
 }
 
 const CardGif = ({ image, index }: IProps) => {
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <img
       loading="lazy"
+      alt="GIF"
       src={image.images.original.url}
       width={image.images.original.width}
       height={image.images.original.height}
@@ -19,7 +24,9 @@ const CardGif = ({ image, index }: IProps) => {
         display: 'block',
         borderRadius: '10px',
         backgroundColor: `${index && colors[index]}`,
+        opacity: loaded ? 1 : 0,
       }}
+      onLoad={() => setLoaded(true)}
     />
   )
 }
