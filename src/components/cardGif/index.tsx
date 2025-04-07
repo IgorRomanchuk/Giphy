@@ -16,11 +16,9 @@ const CardGif = ({ image, index }: IProps) => {
       loading="lazy"
       alt="GIF"
       src={image.images.original.url}
-      width={image.images.original.width}
-      height={image.images.original.height}
+      height={image.images.downsized_small.height}
       style={{
         width: '100%',
-        height: '100%',
         display: 'block',
         borderRadius: '10px',
         backgroundColor: `${index && colors[index]}`,

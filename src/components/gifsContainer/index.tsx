@@ -70,9 +70,6 @@ const GifsContainer = ({
                   return (
                     <div
                       style={{
-                        width: '100%',
-                        height: '100%',
-                        display: 'block',
                         borderRadius: '10px',
                         cursor: 'pointer',
                         backgroundColor: `${num && colors[num]}`,
