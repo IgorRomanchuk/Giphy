@@ -48,7 +48,7 @@ const Gif = () => {
   useEffect(() => {
     if (findFavoriteGif()) setColor(true)
     if (!gif) {
-      navigate('/404')
+      navigate('/not-found')
     }
   }, [])
 

@@ -7,9 +7,11 @@ import { useAppSelector } from '../../hooks/useAppSelector'
 import { setValue } from '../../store/gifsBySearchValueSlice'
 import { fetchGifsBySearchValue } from '../../store/gifsBySearchValueSlice'
 
-const SeatchGifs = () => {
+const SearchGifs = () => {
   const dispatch = useAppDispatch()
+
   const { searchValue } = useParams()
+
   const { gifsBySearchValue, offset, value, error, pagination } =
     useAppSelector((state) => state.gifsBySearchValue)
 
@@ -41,4 +43,4 @@ const SeatchGifs = () => {
   )
 }
 
-export default SeatchGifs
+export default SearchGifs

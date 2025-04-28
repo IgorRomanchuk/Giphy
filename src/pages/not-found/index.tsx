@@ -1,6 +1,6 @@
 import s from './notFound.module.scss'
 
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <div className={s.title}>
       <h3 style={{ color: 'white', paddingTop: '20px' }}>
@@ -11,4 +11,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound
+export default NotFoundPage

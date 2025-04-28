@@ -1,11 +1,11 @@
 import { Navigate, useRoutes } from 'react-router-dom'
 
 import Layout from './layouts/Layout'
-import NotFound from './pages/404'
 import Favorites from './pages/favorites'
 import Gif from './pages/gif'
 import Home from './pages/home'
-import SeatchGifs from './pages/searchGifs'
+import NotFoundPage from './pages/not-found'
+import SearchGifs from './pages/searchGifs'
 
 function Routes() {
   return useRoutes([
@@ -23,14 +23,14 @@ function Routes() {
         },
         {
           path: '/search/:searchValue',
-          element: <SeatchGifs />,
+          element: <SearchGifs />,
         },
         {
           path: '/gifs/:id',
           element: <Gif />,
         },
-        { path: '404', element: <NotFound /> },
-        { path: '*', element: <Navigate to="404" replace /> },
+        { path: 'not-found', element: <NotFoundPage /> },
+        { path: '*', element: <Navigate to="not-found" replace /> },
       ],
     },
   ])
