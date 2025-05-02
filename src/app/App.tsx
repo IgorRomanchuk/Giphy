@@ -2,7 +2,7 @@ import './App.scss'
 
 import Routes from './Routes'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Routes />

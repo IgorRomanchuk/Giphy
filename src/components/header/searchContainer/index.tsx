@@ -5,7 +5,6 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
 import { fetchGifsBySearchValue } from '../../../store/gifsBySearchValueSlice'
 import { resetGifs, setValue } from '../../../store/gifsBySearchValueSlice'
-import { resetTrendingGifs } from '../../../store/gifsSlice'
 import s from './searchContainer.module.scss'
 
 interface IProps {

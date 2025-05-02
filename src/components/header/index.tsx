@@ -1,3 +1,5 @@
+import favoriteIcon from '@assets/img/80h.gif'
+import giphyLogo from '@assets/img/giphyLogo.png'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -10,7 +12,6 @@ import {
   resetGifs,
   setValue,
 } from '../../store/gifsBySearchValueSlice'
-import { resetTrendingGifs } from '../../store/gifsSlice'
 import s from './index.module.scss'
 import SearchContainer from './searchContainer'
 
@@ -68,10 +69,7 @@ const Header = () => {
   }, [screenSize.width])
   return (
     <>
-      <header
-        // style={window.scrollY >= 50 ? { width: '100%' } : {}}
-        className={`${s.header} ${s[headerPosition]}`}
-      >
+      <header className={`${s.header} ${s[headerPosition]}`}>
         <div
           style={{
             display: 'flex',
@@ -81,7 +79,7 @@ const Header = () => {
         >
           <img
             className={`${s.logo} ${s[logoPosition]}`}
-            src="/images/giphyLogo.png"
+            src={giphyLogo}
             alt=""
             width={170}
             height={50}
@@ -107,8 +105,8 @@ const Header = () => {
           >
             <div className={s.imageWrapper}>
               <img
-                src="/images/80h.gif"
-                alt=""
+                src={favoriteIcon}
+                alt="favorite-icon"
                 height={39}
                 width={39}
                 className={`${imageHover ? s.imageScale : s.image}`}

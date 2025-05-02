@@ -2,7 +2,6 @@
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
-  margin-top: 10px;
 }
 
 .button {
@@ -21,7 +20,7 @@
 .ITY {
   width: 36px;
   height: 36px;
-  background: url(../../../public/images/favorite.png) 0px -40px / 240px 80px no-repeat transparent;
+  background: url(../../assets/img/favorite.png) 0px -40px / 240px 80px no-repeat transparent;
   overflow: hidden;
   position: relative;
   animation: 0.3s steps(5) 0s 1 normal none running gDgRmj;
@@ -30,7 +29,7 @@
 .gVRblV {
   width: 36px;
   height: 36px;
-  background: url(../../../public/images/favorite.png) 0px 0px / 240px 80px no-repeat transparent;
+  background: url(../../assets/img/favorite.png) 0px 0px / 240px 80px no-repeat transparent;
   overflow: hidden;
   position: relative;
   animation: 0.5s steps(5) 0s 1 normal none running hhxyjv;

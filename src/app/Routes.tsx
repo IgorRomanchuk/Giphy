@@ -1,11 +1,11 @@
 import { Navigate, useRoutes } from 'react-router-dom'
 
-import Layout from './layouts/Layout'
-import Favorites from './pages/favorites'
-import Gif from './pages/gif'
-import Home from './pages/home'
-import NotFoundPage from './pages/not-found'
-import SearchGifs from './pages/searchGifs'
+import Layout from '../layouts/Layout'
+import Favorites from '../pages/favorites'
+import Gif from '../pages/gif'
+import Home from '../pages/home'
+import NotFoundPage from '../pages/not-found'
+import SearchGifs from '../pages/searchGifs'
 
 function Routes() {
   return useRoutes([
