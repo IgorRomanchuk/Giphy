@@ -1,11 +1,11 @@
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { useAppSelector } from '@shared/hooks/useAppSelector'
+import { deleteFavoriteGif, setFavoriteGif } from '@shared/store/favoritesSlice'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import CardGif from '../../components/cardGif'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { deleteFavoriteGif, setFavoriteGif } from '../../store/favoritesSlice'
+import CardGif from '../../shared/ui/CardGif'
 import s from './gif.module.scss'
 
 const Gif = () => {

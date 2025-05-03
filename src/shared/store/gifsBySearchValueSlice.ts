@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { API_KEY } from '@shared/constants/apiKey'
+import { Gif } from '@shared/models/Gif'
 import axios from 'axios'
-
-import { API_KEY } from '../constants'
-import { Gif } from '../types/Gif'
 
 interface gifsBySearchValueState {
   gifsBySearchValue: Gif[]

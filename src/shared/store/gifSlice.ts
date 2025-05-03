@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-import { Gif as GifType } from '../types/Gif'
+import { Gif as GifType } from '@shared/models/Gif'
 
 interface Gif {
   gif: null | GifType

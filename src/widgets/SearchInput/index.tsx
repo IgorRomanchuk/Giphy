@@ -1,17 +1,18 @@
 import SearchIcon from '@mui/icons-material/Search'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { useAppSelector } from '@shared/hooks/useAppSelector'
+import { fetchGifsBySearchValue } from '@shared/store/gifsBySearchValueSlice'
+import { resetGifs, setValue } from '@shared/store/gifsBySearchValueSlice'
+import { ChangeEvent, KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../hooks/useAppSelector'
-import { fetchGifsBySearchValue } from '../../../store/gifsBySearchValueSlice'
-import { resetGifs, setValue } from '../../../store/gifsBySearchValueSlice'
-import s from './searchContainer.module.scss'
+import s from './SearchInput.module.scss'
 
 interface IProps {
   width: string
 }
 
-const SearchContainer = ({ width }: IProps) => {
+const SearchInput = ({ width }: IProps) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { value, gifsBySearchValue } = useAppSelector(
@@ -22,7 +23,6 @@ const SearchContainer = ({ width }: IProps) => {
     if (!gifsBySearchValue.length) {
       // dispatch(resetTrendingGifs())
       navigate(`/search/${value}`)
-      return null
     }
     if (value) {
       dispatch(resetGifs())
@@ -32,7 +32,7 @@ const SearchContainer = ({ width }: IProps) => {
     }
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSearch()
     }
@@ -43,7 +43,7 @@ const SearchContainer = ({ width }: IProps) => {
       <div className={`${s.searchContainer} ${s[width]}`}>
         <input
           onKeyDown={handleKeyDown}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
             dispatch(setValue(e.target.value))
           }
           value={value}
@@ -57,4 +57,4 @@ const SearchContainer = ({ width }: IProps) => {
     </div>
   )
 }
-export default SearchContainer
+export default SearchInput

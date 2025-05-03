@@ -1,11 +1,11 @@
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { useAppSelector } from '@shared/hooks/useAppSelector'
+import { setValue } from '@shared/store/gifsBySearchValueSlice'
+import { fetchGifsBySearchValue } from '@shared/store/gifsBySearchValueSlice'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import GifsContainer from '../../components/gifsContainer'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { setValue } from '../../store/gifsBySearchValueSlice'
-import { fetchGifsBySearchValue } from '../../store/gifsBySearchValueSlice'
+import GifsContainer from '../../shared/ui/GifsContainer'
 
 const SearchGifs = () => {
   const dispatch = useAppDispatch()

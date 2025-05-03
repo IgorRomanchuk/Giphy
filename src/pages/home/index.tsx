@@ -1,9 +1,8 @@
-import GifsContainer from '@components/gifsContainer'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { useAppSelector } from '@shared/hooks/useAppSelector'
+import { fetchTrendingGifs } from '@shared/store/gifsSlice'
 import { useEffect } from 'react'
-
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { fetchTrendingGifs } from '../../store/gifsSlice'
+import GifsContainer from 'shared/ui/GifsContainer'
 
 const Home = () => {
   const dispatch = useAppDispatch()

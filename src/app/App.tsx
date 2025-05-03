@@ -1,6 +1,6 @@
 import './App.scss'
 
-import Routes from './Routes'
+import Routes from './routes'
 
 const App = () => {
   return (

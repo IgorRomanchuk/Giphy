@@ -1,19 +1,19 @@
 import favoriteIcon from '@assets/img/80h.gif'
 import giphyLogo from '@assets/img/giphyLogo.png'
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-
-import { categories } from '../../constants'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import useScreenSize from '../../hooks/useScreenSize'
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import { useAppSelector } from '@shared/hooks/useAppSelector'
+import useScreenSize from '@shared/hooks/useScreenSize'
 import {
   fetchGifsBySearchValue,
   resetGifs,
   setValue,
-} from '../../store/gifsBySearchValueSlice'
+} from '@shared/store/gifsBySearchValueSlice'
+import { categories } from '@shared/ui/Header/constants/categories'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+
+import SearchInput from '../../../widgets/SearchInput'
 import s from './index.module.scss'
-import SearchContainer from './searchContainer'
 
 const Header = () => {
   const [width, setWidth] = useState('firstWidth')
@@ -115,7 +115,7 @@ const Header = () => {
             <h2 style={{ fontSize: '16px', margin: 'auto 10px' }}>Favorites</h2>
           </button>
         </div>
-        <SearchContainer width={width} />
+        <SearchInput width={width} />
       </header>
       <div className={s.fakeDiv}></div>
     </>

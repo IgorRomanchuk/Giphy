@@ -1,7 +1,7 @@
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { useAppSelector } from '@shared/hooks/useAppSelector'
 
-import GifsContainer from '../../components/gifsContainer'
-import { useAppSelector } from '../../hooks/useAppSelector'
+import GifsContainer from '../../shared/ui/GifsContainer'
 import s from './favorites.module.scss'
 
 const Favorites = () => {

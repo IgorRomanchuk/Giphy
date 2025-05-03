@@ -9,7 +9,6 @@ module.exports = {
       '@features': path.resolve(__dirname, 'src/features'),
       '@widgets': path.resolve(__dirname, 'src/widgets'),
       '@shared': path.resolve(__dirname, 'src/shared'),
-      '@components': path.resolve(__dirname, 'src/components'),
     },
   },
 }

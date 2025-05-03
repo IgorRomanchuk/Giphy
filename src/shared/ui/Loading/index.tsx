@@ -1,6 +1,6 @@
 import s from './loading.module.scss'
 
-const Loader = () => {
+const Loading = () => {
   return (
     <div className={s.loader}>
       <div></div>
@@ -12,4 +12,4 @@ const Loader = () => {
   )
 }
 
-export default Loader
+export default Loading

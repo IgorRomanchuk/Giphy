@@ -1,7 +1,6 @@
+import { Gif } from '@shared/models/Gif'
+import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
 import { useState } from 'react'
-
-import { colors } from '../../constants'
-import { Gif } from '../../types/Gif'
 
 interface IProps {
   image: Gif
@@ -21,7 +20,7 @@ const CardGif = ({ image, index }: IProps) => {
         width: '100%',
         display: 'block',
         borderRadius: '10px',
-        backgroundColor: `${index && colors[index]}`,
+        backgroundColor: `${index && cardColors[index]}`,
         opacity: loaded ? 1 : 0,
       }}
       onLoad={() => setLoaded(true)}

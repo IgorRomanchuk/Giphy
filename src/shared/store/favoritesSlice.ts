@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-import { Gif } from '../types/Gif'
+import { Gif } from '@shared/models/Gif'
 
 interface Favorites {
   favorites: Gif[]

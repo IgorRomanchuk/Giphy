@@ -1,16 +1,16 @@
+import { useAppDispatch } from '@shared/hooks/useAppDispatch'
+import useScreenSize from '@shared/hooks/useScreenSize'
+import { Gif } from '@shared/models/Gif'
+import { setGif } from '@shared/store/gifSlice'
+import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
+import Loading from '@shared/ui/Loading'
+import { getRandomInt } from '@shared/utils/getRandomInt'
 import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import { useNavigate } from 'react-router-dom'
 
-import CardGif from '../../components/cardGif'
-import { colors } from '../../constants'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import useScreenSize from '../../hooks/useScreenSize'
-import { setGif } from '../../store/gifSlice'
-import { Gif } from '../../types/Gif'
-import getRandomInt from '../../utils/getRandomInt'
-import Loader from '../loading'
+import CardGif from '../CardGif'
 
 interface IProps {
   gifsArray: Gif[]
@@ -47,7 +47,7 @@ const GifsContainer = ({
             dataLength={gifsArray.length}
             next={fetchData}
             hasMore={!error}
-            loader={pagination?.total_count !== gifsArray.length && <Loader />}
+            loader={pagination?.total_count !== gifsArray.length && <Loading />}
             endMessage={
               <h3
                 style={{
@@ -72,7 +72,7 @@ const GifsContainer = ({
                       style={{
                         borderRadius: '10px',
                         cursor: 'pointer',
-                        backgroundColor: `${num && colors[num]}`,
+                        backgroundColor: `${num && cardColors[num]}`,
                       }}
                       onClick={() => {
                         dispatch(setGif(image))
