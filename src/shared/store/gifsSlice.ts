@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { API_KEY } from '@shared/constants/apiKey'
+import { GifsApi } from '@shared/api/gifs.api'
 import { Gif } from '@shared/models/Gif'
-import axios from 'axios'
 
 interface TrendingGifsState {
   trendingGifs: Gif[]
@@ -24,12 +23,13 @@ export const fetchTrendingGifs = createAsyncThunk<
 >(
   'trendingGifs/fetchTrendingGifs',
   async function (offset, { rejectWithValue }) {
-    return await axios
-      .get(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=12&offset=${offset}`,
+    try {
+      return await GifsApi.getTrendingGifs(offset).then((res) => res.data)
+    } catch (err) {
+      return rejectWithValue(
+        err instanceof Error ? err.message : 'Failed to fetch gifs',
       )
-      .then((res) => res.data.data)
-      .catch((err) => rejectWithValue(err.message))
+    }
   },
 )
 

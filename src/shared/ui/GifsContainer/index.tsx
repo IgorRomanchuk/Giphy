@@ -5,7 +5,6 @@ import { setGif } from '@shared/store/gifSlice'
 import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
 import Loading from '@shared/ui/Loading'
 import { getRandomInt } from '@shared/utils/getRandomInt'
-import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import { useNavigate } from 'react-router-dom'
@@ -31,13 +30,6 @@ const GifsContainer = ({
 }: IProps) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const screenSize = useScreenSize()
-  useEffect(() => {
-    if (pagination?.total_count === pagination?.count) return
-    if (screenSize.height && document.body.scrollHeight < screenSize.height) {
-      fetchData()
-    }
-  }, [gifsArray.length])
 
   return (
     <>

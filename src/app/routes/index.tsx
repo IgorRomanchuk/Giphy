@@ -1,9 +1,9 @@
 import Layout from '@app/layout'
-import Favorites from '@pages/favorites'
 import Gif from '@pages/gif'
-import Home from '@pages/home'
 import NotFoundPage from '@pages/not-found'
 import SearchGifs from '@pages/searchGifs'
+import Favorites from 'pages/favorites-gifs'
+import GifsPage from 'pages/gifs'
 import { Navigate, useRoutes } from 'react-router-dom'
 
 const Routes = () => {
@@ -14,10 +14,10 @@ const Routes = () => {
       children: [
         {
           path: '/',
-          element: <Home />,
+          element: <GifsPage />,
         },
         {
-          path: '/favorites',
+          path: '/favorites-gifs',
           element: <Favorites />,
         },
         {

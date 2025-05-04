@@ -101,7 +101,7 @@ const Header = () => {
             className={s.favoritesButton}
             onMouseOver={() => setImageHover(true)}
             onMouseLeave={() => setImageHover(false)}
-            onClick={() => navigate('/favorites')}
+            onClick={() => navigate('/favorites-gifs')}
           >
             <div className={s.imageWrapper}>
               <img
