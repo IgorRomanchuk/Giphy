@@ -1,19 +1,22 @@
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
+import useScreenSize from '@shared/hooks/useScreenSize'
 import { setValue } from '@shared/store/gifsBySearchValueSlice'
 import { fetchGifsBySearchValue } from '@shared/store/gifsBySearchValueSlice'
+import GifsContainer from '@shared/ui/GifsContainer'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import GifsContainer from '../../shared/ui/GifsContainer'
-
-const SearchGifs = () => {
+const GifsSearch = () => {
   const dispatch = useAppDispatch()
+
+  const screenSize = useScreenSize()
 
   const { searchValue } = useParams()
 
-  const { gifsBySearchValue, offset, value, error, pagination } =
-    useAppSelector((state) => state.gifsBySearchValue)
+  const { gifsBySearchValue, offset, value, error } = useAppSelector(
+    (state) => state.gifsBySearchValue,
+  )
 
   const fetchData = () => {
     dispatch(fetchGifsBySearchValue({ offset, searchValue: value }))
@@ -23,24 +26,29 @@ const SearchGifs = () => {
     const promise = dispatch(
       fetchGifsBySearchValue({ offset: 0, searchValue: searchValue }),
     )
+
     dispatch(setValue(searchValue))
+
     return () => {
       promise?.abort()
     }
   }, [])
 
+  useEffect(() => {
+    if (screenSize.height && document.body.scrollHeight < screenSize.height) {
+      fetchData()
+    }
+  }, [gifsBySearchValue.length])
+
   return (
-    <>
-      <GifsContainer
-        fetchData={fetchData}
-        gifsArray={gifsBySearchValue}
-        error={error}
-        directory={'../gifs'}
-        opacity={true}
-        pagination={pagination}
-      />
-    </>
+    <GifsContainer
+      fetchData={fetchData}
+      gifsArray={gifsBySearchValue}
+      error={error}
+      directory={'../gifs'}
+      opacity
+    />
   )
 }
 
-export default SearchGifs
+export default GifsSearch

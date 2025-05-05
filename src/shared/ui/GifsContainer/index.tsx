@@ -1,5 +1,4 @@
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
-import useScreenSize from '@shared/hooks/useScreenSize'
 import { Gif } from '@shared/models/Gif'
 import { setGif } from '@shared/store/gifSlice'
 import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
@@ -17,7 +16,6 @@ interface IProps {
   error?: string | null | boolean
   directory: string
   opacity: boolean
-  pagination?: any
 }
 
 const GifsContainer = ({
@@ -26,7 +24,6 @@ const GifsContainer = ({
   error,
   directory,
   opacity,
-  pagination,
 }: IProps) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -39,7 +36,7 @@ const GifsContainer = ({
             dataLength={gifsArray.length}
             next={fetchData}
             hasMore={!error}
-            loader={pagination?.total_count !== gifsArray.length && <Loading />}
+            loader={<Loading />}
             endMessage={
               <h3
                 style={{

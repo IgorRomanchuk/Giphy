@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { API_KEY } from '@shared/constants/apiKey'
+import { GifsApi } from '@shared/api/gifs.api'
 import { Gif } from '@shared/models/Gif'
-import axios from 'axios'
 
 interface gifsBySearchValueState {
   gifsBySearchValue: Gif[]
@@ -9,7 +8,6 @@ interface gifsBySearchValueState {
   isLoading: boolean
   error: null | string
   value: string
-  pagination: { total_count: number; count: number; offset: number } | null
 }
 
 const initialState: gifsBySearchValueState = {
@@ -18,27 +16,22 @@ const initialState: gifsBySearchValueState = {
   isLoading: false,
   error: null,
   value: '',
-  pagination: null,
 }
 
 export const fetchGifsBySearchValue = createAsyncThunk<
-  any,
+  Gif[],
   { offset: number; searchValue: string | undefined },
   { rejectValue: string }
 >(
   'gifs/fetchGifsBySearchValue',
   async function ({ offset, searchValue }, { rejectWithValue }) {
-    return await axios
-      .get(`https://api.giphy.com/v1/gifs/search`, {
-        params: {
-          api_key: API_KEY,
-          q: searchValue,
-          limit: 12,
-          offset: offset,
-        },
-      })
-      .then((res) => res.data)
-      .catch((err) => rejectWithValue(err.message))
+    try {
+      return await GifsApi.getGifsByValue(offset, searchValue)
+    } catch (err) {
+      return rejectWithValue(
+        err instanceof Error ? err.message : 'Failed to fetch gifs',
+      )
+    }
   },
 )
 
@@ -64,12 +57,10 @@ const gifsBySearchValueSlice = createSlice({
         state.isLoading = false
         state.error = null
         state.offset = state.offset + 12
-        state.pagination = action.payload.pagination
-        state.gifsBySearchValue.push(...action.payload.data)
+        state.gifsBySearchValue.push(...action.payload)
       })
       .addCase(fetchGifsBySearchValue.rejected, (state, action) => {
         state.isLoading = false
-        state.pagination = null
         state.error = action.payload as string
       })
   },
