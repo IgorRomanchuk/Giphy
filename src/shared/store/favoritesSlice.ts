@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Gif } from '@shared/models/Gif'
+import { GifSchema } from '@shared/models/gif.model'
 
 interface Favorites {
-  favorites: Gif[]
+  favorites: GifSchema[]
 }
 
 const initialState: Favorites = {

@@ -15,7 +15,6 @@ const Favorites = () => {
           gifsArray={favorites}
           error={true}
           directory={'../gifs'}
-          opacity={false}
         />
       ) : (
         <div className={s.wrap}>

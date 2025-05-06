@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { GifsApi } from '@shared/api/gifs.api'
-import { Gif } from '@shared/models/Gif'
+import { GifSchema } from '@shared/models/gif.model'
 
 interface gifsBySearchValueState {
-  gifsBySearchValue: Gif[]
+  gifsBySearchValue: GifSchema[]
   offset: number
   isLoading: boolean
   error: null | string
@@ -19,7 +19,7 @@ const initialState: gifsBySearchValueState = {
 }
 
 export const fetchGifsBySearchValue = createAsyncThunk<
-  Gif[],
+  GifSchema[],
   { offset: number; searchValue: string | undefined },
   { rejectValue: string }
 >(

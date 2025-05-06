@@ -46,7 +46,6 @@ const GifsSearch = () => {
       gifsArray={gifsBySearchValue}
       error={error}
       directory={'../gifs'}
-      opacity
     />
   )
 }

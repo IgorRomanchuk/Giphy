@@ -40,7 +40,6 @@ const Gifs = () => {
       gifsArray={trendingGifs}
       error={error}
       directory={'gifs'}
-      opacity
     />
   )
 }

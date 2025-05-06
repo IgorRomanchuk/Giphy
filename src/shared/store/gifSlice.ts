@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Gif as GifType } from '@shared/models/Gif'
+import { GifSchema } from '@shared/models/gif.model'
 
 interface Gif {
-  gif: null | GifType
+  gif: null | GifSchema
 }
 
 const initialState: Gif = {

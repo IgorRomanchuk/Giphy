@@ -1,30 +1,37 @@
-import { Gif } from '@shared/models/Gif'
+import { GifSchema } from '@shared/models/gif.model'
 import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
+import { getRandomInt } from '@shared/ui/CardGif/utils/get-random-int'
 import { useState } from 'react'
 
 interface IProps {
-  image: Gif
-  index?: number
+  image: GifSchema
 }
 
-const CardGif = ({ image, index }: IProps) => {
+const CardGif = ({ image }: IProps) => {
   const [loaded, setLoaded] = useState(false)
 
   return (
-    <img
-      loading="lazy"
-      alt="GIF"
-      src={image.images.original.url}
-      height={image.images.downsized_small.height}
+    <div
       style={{
-        width: '100%',
-        display: 'block',
         borderRadius: '10px',
-        backgroundColor: `${index && cardColors[index]}`,
-        opacity: loaded ? 1 : 0,
+        cursor: 'pointer',
+        backgroundColor: `${cardColors[getRandomInt(4)]}`,
       }}
-      onLoad={() => setLoaded(true)}
-    />
+    >
+      <img
+        loading="lazy"
+        alt="GIF"
+        src={image.images.original.url}
+        height={image.images.downsized_small.height}
+        style={{
+          width: '100%',
+          display: 'block',
+          borderRadius: '10px',
+          opacity: loaded ? 1 : 0,
+        }}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
   )
 }
 

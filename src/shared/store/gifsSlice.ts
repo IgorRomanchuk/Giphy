@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { GifsApi } from '@shared/api/gifs.api'
-import { Gif } from '@shared/models/Gif'
+import { GifSchema } from '@shared/models/gif.model'
 
 interface TrendingGifsState {
-  trendingGifs: Gif[]
+  trendingGifs: GifSchema[]
   offset: number
   isLoading: boolean
   error: null | string
@@ -17,7 +17,7 @@ const initialState: TrendingGifsState = {
 }
 
 export const fetchTrendingGifs = createAsyncThunk<
-  Gif[],
+  GifSchema[],
   number,
   { rejectValue: string }
 >(
