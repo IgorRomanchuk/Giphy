@@ -26,7 +26,10 @@ export const fetchGifsBySearchValue = createAsyncThunk<
   'gifs/fetchGifsBySearchValue',
   async function ({ offset, searchValue }, { rejectWithValue }) {
     try {
-      return await GifsApi.getGifsByValue(offset, searchValue)
+      return await GifsApi.getGifsByValue({
+        q: searchValue,
+        offset,
+      })
     } catch (err) {
       return rejectWithValue(
         err instanceof Error ? err.message : 'Failed to fetch gifs',

@@ -24,7 +24,9 @@ export const fetchTrendingGifs = createAsyncThunk<
   'trendingGifs/fetchTrendingGifs',
   async function (offset, { rejectWithValue }) {
     try {
-      return await GifsApi.getTrendingGifs(offset)
+      return await GifsApi.getTrendingGifs({
+        offset,
+      })
     } catch (err) {
       return rejectWithValue(
         err instanceof Error ? err.message : 'Failed to fetch gifs',

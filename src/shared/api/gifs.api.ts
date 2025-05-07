@@ -1,42 +1,21 @@
-import { API_KEY } from '@shared/constants/apiKey'
+import { api } from '@shared/api'
 import { BASE_URL } from '@shared/constants/baseUrl'
 import { GifSchema } from '@shared/models/gif.model'
-import axios from 'axios'
+import { ParamsDto } from '@shared/models/params.dto'
 
 export const GifsApi = {
-  getTrendingGifs: async (offset: number): Promise<GifSchema[]> => {
-    return (
-      await axios.get(`${BASE_URL}/gifs/trending`, {
-        params: {
-          api_key: API_KEY,
-          limit: 12,
-          offset,
-        },
+  getTrendingGifs: async (params: Partial<ParamsDto>): Promise<GifSchema[]> =>
+    (
+      await api.get(`${BASE_URL}/gifs/trending`, {
+        params,
       })
-    ).data.data
-  },
-  getGifsByValue: async (
-    offset: number,
-    searchValue?: string,
-  ): Promise<GifSchema[]> => {
-    return (
-      await axios.get(`${BASE_URL}/gifs/search`, {
-        params: {
-          api_key: API_KEY,
-          q: searchValue,
-          limit: 12,
-          offset,
-        },
+    ).data.data,
+  getGifsByValue: async (params: Partial<ParamsDto>): Promise<GifSchema[]> =>
+    (
+      await api.get(`${BASE_URL}/gifs/search`, {
+        params,
       })
-    ).data.data
-  },
-  getGifById: async (gifId: string): Promise<GifSchema> => {
-    return (
-      await axios.get(`${BASE_URL}/gifs/${gifId}`, {
-        params: {
-          api_key: API_KEY,
-        },
-      })
-    ).data.data
-  },
+    ).data.data,
+  getGifById: async (gifId: string): Promise<GifSchema> =>
+    (await api.get(`${BASE_URL}/gifs/${gifId}`)).data.data,
 }
