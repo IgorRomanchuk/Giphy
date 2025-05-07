@@ -2,30 +2,31 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { GifsApi } from '@shared/api/gifs.api'
 import { GifSchema } from '@shared/models/gif.model'
 
-interface TrendingGifsState {
-  trendingGifs: GifSchema[]
+interface RelatedGifsState {
+  relatedGifs: GifSchema[]
   offset: number
   isLoading: boolean
   error: null | string
 }
 
-const initialState: TrendingGifsState = {
-  trendingGifs: [],
+const initialState: RelatedGifsState = {
+  relatedGifs: [],
   offset: 0,
   isLoading: false,
   error: null,
 }
 
-export const fetchTrendingGifs = createAsyncThunk<
+export const fetchRelatedGifs = createAsyncThunk<
   GifSchema[],
-  number,
+  { offset: number; id: string },
   { rejectValue: string }
 >(
-  'trendingGifs/fetchTrendingGifs',
-  async function (offset, { rejectWithValue }) {
+  'relatedGifs/fetchRelatedGifs',
+  async function ({ offset, id }, { rejectWithValue }) {
     try {
-      return await GifsApi.getTrendingGifs({
+      return await GifsApi.getRelatedGifs({
         offset,
+        gif_id: id,
         limit: 12,
       })
     } catch (err) {
@@ -36,34 +37,34 @@ export const fetchTrendingGifs = createAsyncThunk<
   },
 )
 
-const trendingGifsSlice = createSlice({
-  name: 'trendingGifs',
+const relatedGifsSlice = createSlice({
+  name: 'relatedGifs',
   initialState,
   reducers: {
-    resetTrendingGifs: (state) => {
-      state.trendingGifs = []
+    resetRelatedGifs: (state) => {
+      state.relatedGifs = []
       state.offset = state.offset - 12
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTrendingGifs.pending, (state) => {
+      .addCase(fetchRelatedGifs.pending, (state) => {
         state.isLoading = true
         state.error = null
       })
-      .addCase(fetchTrendingGifs.fulfilled, (state, action) => {
+      .addCase(fetchRelatedGifs.fulfilled, (state, action) => {
         state.isLoading = false
         state.error = null
         state.offset = state.offset + 12
-        state.trendingGifs.push(...action.payload)
+        state.relatedGifs.push(...action.payload)
       })
-      .addCase(fetchTrendingGifs.rejected, (state, action) => {
+      .addCase(fetchRelatedGifs.rejected, (state, action) => {
         state.isLoading = false
         state.error = action.payload as string
       })
   },
 })
 
-export const { resetTrendingGifs } = trendingGifsSlice.actions
+export const { resetRelatedGifs } = relatedGifsSlice.actions
 
-export default trendingGifsSlice.reducer
+export default relatedGifsSlice.reducer

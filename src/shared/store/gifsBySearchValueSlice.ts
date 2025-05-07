@@ -29,6 +29,7 @@ export const fetchGifsBySearchValue = createAsyncThunk<
       return await GifsApi.getGifsByValue({
         q: searchValue,
         offset,
+        limit: 12,
       })
     } catch (err) {
       return rejectWithValue(

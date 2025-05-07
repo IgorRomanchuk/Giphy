@@ -10,7 +10,6 @@ api.interceptors.request.use((config) => {
   return {
     ...config,
     params: {
-      limit: 12,
       ...config.params,
       api_key: API_KEY,
     },

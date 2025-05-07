@@ -16,6 +16,7 @@ const CardGif = ({ image }: IProps) => {
         borderRadius: '10px',
         cursor: 'pointer',
         backgroundColor: `${cardColors[getRandomInt(4)]}`,
+        width: '100%',
       }}
     >
       <img

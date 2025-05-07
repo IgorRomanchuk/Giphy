@@ -19,6 +19,13 @@ const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+
   return (
     <>
       {gifsArray && (
@@ -49,6 +56,7 @@ const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
                     onClick={() => {
                       dispatch(setGif(image))
                       navigate(`${directory}/${image.id}`)
+                      scrollToTop()
                     }}
                     key={i}
                   >

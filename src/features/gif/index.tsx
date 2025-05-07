@@ -1,5 +1,4 @@
 import cryingCowboyEmoji from '@assets/img/crying-cowbow-emoji.gif'
-import Gifs from '@features/gifs'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { GifsApi } from '@shared/api/gifs.api'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
@@ -9,26 +8,30 @@ import { deleteFavoriteGif, setFavoriteGif } from '@shared/store/favoritesSlice'
 import CardGif from '@shared/ui/CardGif'
 import Loading from '@shared/ui/Loading'
 import { downloadGif } from '@shared/utils/download-gif'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { FC, useEffect, useState } from 'react'
 
 import s from './gif.module.scss'
 
-const Gif = () => {
-  const [gif, setGif] = useState<GifSchema>({} as GifSchema)
+interface Props {
+  id: string
+}
+
+const Gif: FC<Props> = ({ id }) => {
+  const [gif, setGif] = useState<GifSchema | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [color, setColor] = useState<boolean>(false)
-
-  const { id } = useParams()
-
+  console.log(gif)
+  console.log(loading)
   const dispatch = useAppDispatch()
 
   const { favorites } = useAppSelector((state) => state.favorites)
 
   const findFavoriteGif = () =>
-    Object.keys(gif).length && favorites.find((item) => item.id === gif?.id)
+    gif && favorites.find((item) => item.id === gif?.id)
 
   const handleOnClick = () => {
+    if (!gif) return
+
     if (findFavoriteGif()) {
       dispatch(deleteFavoriteGif(gif))
       setColor(false)
@@ -39,14 +42,14 @@ const Gif = () => {
   }
 
   const getGif = async () => {
-    if (!id) return
+    setLoading(true)
     try {
-      setLoading(true)
       const data = await GifsApi.getGifById(id)
       setGif(data)
       if (favorites.find((item) => item.id === data?.id)) setColor(true)
     } catch (err) {
       console.log(err)
+      setGif(null)
     } finally {
       setLoading(false)
     }
@@ -54,48 +57,48 @@ const Gif = () => {
 
   useEffect(() => {
     getGif()
-  }, [])
+  }, [id])
 
   if (loading) {
-    return <Loading />
+    return (
+      <div className={s.loadingContainer}>
+        <Loading />
+      </div>
+    )
+  }
+
+  if (!gif) {
+    return (
+      <div className={s.emptyState}>
+        <img
+          src={cryingCowboyEmoji}
+          width={300}
+          height={300}
+          alt="crying-cowbow-emoji"
+        />
+        <p>Oops! There&apos;s nothing here.</p>
+        <p>For GIFs that DO exist, here&apos;s our trending feed...</p>
+      </div>
+    )
   }
 
   return (
-    <>
-      {Object.keys(gif).length ? (
-        <div
-          className={s.wrap}
-          style={{
-            maxWidth: `${gif.images.original.width}px`,
-            maxHeight: `${gif.images.original.height}px`,
-          }}
+    <div className={s.wrap}>
+      <div></div>
+      <CardGif image={gif} />
+      <div style={{ marginRight: 'auto' }}>
+        <button
+          className={s.button}
+          onClick={() => downloadGif(gif.images.original.url, gif.id)}
         >
-          <CardGif image={gif} />
-          <div>
-            <button
-              className={s.button}
-              onClick={() => downloadGif(gif.images.original.url, gif.id)}
-            >
-              Download
-            </button>
-            <button className={s.button} onClick={handleOnClick}>
-              <div className={s.title}>Favorite</div>
-              <FavoriteIcon style={{ color: color ? '#e46363' : '' }} />
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className={s.emptyState}>
-          <img
-            src={cryingCowboyEmoji}
-            width={300}
-            height={300}
-            alt="crying-cowbow-emoji"
-          />
-          <div>Oops! There&apos;s nothing here.</div>
-        </div>
-      )}
-    </>
+          Download
+        </button>
+        <button className={s.button} onClick={handleOnClick}>
+          <div className={s.title}>Favorite</div>
+          <FavoriteIcon style={{ color: color ? '#e46363' : '' }} />
+        </button>
+      </div>
+    </div>
   )
 }
 

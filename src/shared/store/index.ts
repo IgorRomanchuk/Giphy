@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
-
-import favoritesSlice from './favoritesSlice'
-import gifsBySearchValueSlice from './gifsBySearchValueSlice'
-import gifSlice from './gifSlice'
-import trendingGifsSlice from './gifsSlice'
+import favoritesSlice from '@shared/store/favoritesSlice'
+import gifsBySearchValueSlice from '@shared/store/gifsBySearchValueSlice'
+import gifSlice from '@shared/store/gifSlice'
+import trendingGifsSlice from '@shared/store/gifsSlice'
+import relatedGifsSlice from '@shared/store/relatedGifsSlice'
 
 const store = configureStore({
   reducer: {
     trendingGifs: trendingGifsSlice,
+    relatedGifs: relatedGifsSlice,
     gifsBySearchValue: gifsBySearchValueSlice,
     favorites: favoritesSlice,
     gif: gifSlice,
