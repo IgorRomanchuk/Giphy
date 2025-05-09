@@ -26,7 +26,7 @@ const CardGif = ({ image, large }: IProps) => {
         src={large ? image.images.original.url : image.images.downsized.url}
         height={
           large
-            ? image.images.original.height
+            ? image.images['480w_still'].height
             : image.images.downsized_small.height
         }
         style={{

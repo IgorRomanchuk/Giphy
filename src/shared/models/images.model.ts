@@ -134,4 +134,10 @@ export interface ImagesModel {
     width: string
     height: string
   }
+  '480w_still': {
+    url: string
+    width: string
+    height: string
+    size: string
+  }
 }

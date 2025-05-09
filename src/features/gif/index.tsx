@@ -44,10 +44,9 @@ const Gif: FC<Props> = ({ id }) => {
   }, [id])
 
   useEffect(() => {
-    if (gif) {
-      if (findFavoriteGif()) {
-        setIconColor(true)
-      }
+    setIconColor(false)
+    if (gif && findFavoriteGif()) {
+      setIconColor(true)
     }
   }, [gif])
 
