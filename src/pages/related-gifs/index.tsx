@@ -25,9 +25,7 @@ const RelatedGifs: FC<Props> = ({ id }) => {
   }
 
   useEffect(() => {
-    if (relatedGifs.length) return
-
-    const promise = dispatch(fetchRelatedGifs({ offset, id }))
+    const promise = dispatch(fetchRelatedGifs({ offset: 0, id }))
 
     return () => {
       promise?.abort()

@@ -35,6 +35,10 @@ const Header = () => {
     navigate('/')
     dispatch(setValue(''))
     dispatch(resetGifs())
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
   }
   const handleSearch = (value: string) => {
     if (!gifsBySearchValue.length) {
@@ -67,6 +71,7 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [screenSize.width])
+
   return (
     <>
       <header className={`${s.header} ${s[headerPosition]}`}>

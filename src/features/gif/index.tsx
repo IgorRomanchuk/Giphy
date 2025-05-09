@@ -1,11 +1,10 @@
-import cryingCowboyEmoji from '@assets/img/crying-cowbow-emoji.gif'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { GifsApi } from '@shared/api/gifs.api'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import { GifSchema } from '@shared/models/gif.model'
 import { deleteFavoriteGif, setFavoriteGif } from '@shared/store/favoritesSlice'
+import { fetchGif } from '@shared/store/gifSlice'
 import CardGif from '@shared/ui/CardGif'
+import EmptyState from '@shared/ui/EmptyState'
 import Loading from '@shared/ui/Loading'
 import { downloadGif } from '@shared/utils/download-gif'
 import { FC, useEffect, useState } from 'react'
@@ -17,49 +16,42 @@ interface Props {
 }
 
 const Gif: FC<Props> = ({ id }) => {
-  const [gif, setGif] = useState<GifSchema | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [color, setColor] = useState<boolean>(false)
-  console.log(gif)
-  console.log(loading)
+  const [iconColor, setIconColor] = useState<boolean>(false)
+
   const dispatch = useAppDispatch()
 
   const { favorites } = useAppSelector((state) => state.favorites)
 
+  const { gif, isLoading } = useAppSelector((state) => state.gif)
+
   const findFavoriteGif = () =>
-    gif && favorites.find((item) => item.id === gif?.id)
+    gif && favorites.find((item) => item.id === gif.id)
 
   const handleOnClick = () => {
     if (!gif) return
 
     if (findFavoriteGif()) {
       dispatch(deleteFavoriteGif(gif))
-      setColor(false)
+      setIconColor(false)
     } else {
       dispatch(setFavoriteGif(gif))
-      setColor(true)
-    }
-  }
-
-  const getGif = async () => {
-    setLoading(true)
-    try {
-      const data = await GifsApi.getGifById(id)
-      setGif(data)
-      if (favorites.find((item) => item.id === data?.id)) setColor(true)
-    } catch (err) {
-      console.log(err)
-      setGif(null)
-    } finally {
-      setLoading(false)
+      setIconColor(true)
     }
   }
 
   useEffect(() => {
-    getGif()
+    dispatch(fetchGif(id))
   }, [id])
 
-  if (loading) {
+  useEffect(() => {
+    if (gif) {
+      if (findFavoriteGif()) {
+        setIconColor(true)
+      }
+    }
+  }, [gif])
+
+  if (isLoading) {
     return (
       <div className={s.loadingContainer}>
         <Loading />
@@ -68,25 +60,14 @@ const Gif: FC<Props> = ({ id }) => {
   }
 
   if (!gif) {
-    return (
-      <div className={s.emptyState}>
-        <img
-          src={cryingCowboyEmoji}
-          width={300}
-          height={300}
-          alt="crying-cowbow-emoji"
-        />
-        <p>Oops! There&apos;s nothing here.</p>
-        <p>For GIFs that DO exist, here&apos;s our trending feed...</p>
-      </div>
-    )
+    return <EmptyState className={s.emptyState} />
   }
 
   return (
     <div className={s.wrap}>
       <div></div>
-      <CardGif image={gif} />
-      <div style={{ marginRight: 'auto' }}>
+      <CardGif image={gif} large />
+      <div className={s.buttonsContainer}>
         <button
           className={s.button}
           onClick={() => downloadGif(gif.images.original.url, gif.id)}
@@ -95,7 +76,7 @@ const Gif: FC<Props> = ({ id }) => {
         </button>
         <button className={s.button} onClick={handleOnClick}>
           <div className={s.title}>Favorite</div>
-          <FavoriteIcon style={{ color: color ? '#e46363' : '' }} />
+          <FavoriteIcon style={{ color: iconColor ? '#e46363' : '' }} />
         </button>
       </div>
     </div>

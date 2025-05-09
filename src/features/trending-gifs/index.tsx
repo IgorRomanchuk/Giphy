@@ -1,11 +1,11 @@
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import useScreenSize from '@shared/hooks/useScreenSize'
-import { fetchTrendingGifs } from '@shared/store/gifsSlice'
+import { fetchTrendingGifs, resetTrendingGifs } from '@shared/store/gifsSlice'
 import { useEffect } from 'react'
 import GifsContainer from 'shared/ui/GifsContainer'
 
-const Gifs = () => {
+const TrendingGifs = () => {
   const dispatch = useAppDispatch()
 
   const screenSize = useScreenSize()
@@ -19,9 +19,8 @@ const Gifs = () => {
   }
 
   useEffect(() => {
-    if (trendingGifs.length) return
-
-    const promise = dispatch(fetchTrendingGifs(offset))
+    dispatch(resetTrendingGifs())
+    const promise = dispatch(fetchTrendingGifs(0))
 
     return () => {
       promise?.abort()
@@ -44,4 +43,4 @@ const Gifs = () => {
   )
 }
 
-export default Gifs
+export default TrendingGifs

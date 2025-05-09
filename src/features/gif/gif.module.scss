@@ -7,7 +7,7 @@
 
 .button {
   display: flex;
-  color: rgba(216, 216, 216, 0.849);
+  color: white;
   cursor: pointer;
   font-weight: 700;
   font-size: 16px;
@@ -15,7 +15,8 @@
   margin-top: 10px;
 
   &:hover {
-    color: rgb(233, 228, 228);
+    font-size: 18px;
+    transition: all 0.3s;
   }
 }
 
@@ -30,6 +31,10 @@
 .loadingContainer {
   min-height: 200px;
   min-width: 200px;
+}
+
+.buttonsContainer {
+  margin-right: auto;
 }
 
 @media screen and (max-width: 485px) {

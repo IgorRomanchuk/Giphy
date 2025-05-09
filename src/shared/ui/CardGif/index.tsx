@@ -5,9 +5,10 @@ import { useState } from 'react'
 
 interface IProps {
   image: GifSchema
+  large?: boolean
 }
 
-const CardGif = ({ image }: IProps) => {
+const CardGif = ({ image, large }: IProps) => {
   const [loaded, setLoaded] = useState(false)
 
   return (
@@ -22,8 +23,12 @@ const CardGif = ({ image }: IProps) => {
       <img
         loading="lazy"
         alt="GIF"
-        src={image.images.original.url}
-        height={image.images.downsized_small.height}
+        src={large ? image.images.original.url : image.images.downsized.url}
+        height={
+          large
+            ? image.images.original.height
+            : image.images.downsized_small.height
+        }
         style={{
           width: '100%',
           display: 'block',

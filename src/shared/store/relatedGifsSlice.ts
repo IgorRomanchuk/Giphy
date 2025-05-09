@@ -31,7 +31,7 @@ export const fetchRelatedGifs = createAsyncThunk<
       })
     } catch (err) {
       return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch gifs',
+        err instanceof Error ? err.message : 'Failed to fetch trending-gifs',
       )
     }
   },

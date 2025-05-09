@@ -1,6 +1,4 @@
-import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { GifSchema } from '@shared/models/gif.model'
-import { setGif } from '@shared/store/gifSlice'
 import Loading from '@shared/ui/Loading'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
@@ -16,7 +14,6 @@ interface IProps {
 }
 
 const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
-  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const scrollToTop = () => {
@@ -54,7 +51,6 @@ const GifsContainer = ({ gifsArray, fetchData, error, directory }: IProps) => {
                 {gifsArray.map((image: GifSchema, i: number) => (
                   <div
                     onClick={() => {
-                      dispatch(setGif(image))
                       navigate(`${directory}/${image.id}`)
                       scrollToTop()
                     }}

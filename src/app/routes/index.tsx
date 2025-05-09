@@ -1,6 +1,6 @@
 import Layout from '@app/layout'
 import Favorites from '@pages/favorites-gifs'
-import Gif from '@pages/gif'
+import GifPage from '@pages/gif'
 import GifsPage from '@pages/gifs'
 import GifsSearchPage from '@pages/gifs-search'
 import NotFoundPage from '@pages/not-found'
@@ -26,7 +26,7 @@ const Routes = () => {
         },
         {
           path: '/gifs/:id',
-          element: <Gif />,
+          element: <GifPage />,
         },
         { path: 'not-found', element: <NotFoundPage /> },
         { path: '*', element: <Navigate to="not-found" replace /> },

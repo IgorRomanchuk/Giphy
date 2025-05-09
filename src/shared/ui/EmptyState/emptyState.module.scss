@@ -1,0 +1,29 @@
+.arrowDown {
+  position: relative;
+  width: 16px;
+  height: 20px;
+  align-self: center;
+  margin: 30px auto 0;
+}
+
+.arrowDown::before,
+.arrowDown::after {
+  content: "";
+  position: absolute;
+  background: white;
+  width: 4px;
+  height: 10px;
+  top: 0;
+}
+
+.arrowDown::before {
+  left: 4px;
+  transform: rotate(45deg);
+  transform-origin: bottom;
+}
+
+.arrowDown::after {
+  right: 6px;
+  transform: rotate(-45deg);
+  transform-origin: bottom;
+}

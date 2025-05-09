@@ -23,7 +23,7 @@ export const fetchGifsBySearchValue = createAsyncThunk<
   { offset: number; searchValue: string | undefined },
   { rejectValue: string }
 >(
-  'gifs/fetchGifsBySearchValue',
+  'trending-gifs/fetchGifsBySearchValue',
   async function ({ offset, searchValue }, { rejectWithValue }) {
     try {
       return await GifsApi.getGifsByValue({
@@ -33,7 +33,7 @@ export const fetchGifsBySearchValue = createAsyncThunk<
       })
     } catch (err) {
       return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch gifs',
+        err instanceof Error ? err.message : 'Failed to fetch trending-gifs',
       )
     }
   },

@@ -1,7 +1,7 @@
-import Gifs from '@features/gifs'
+import TrendingGifs from 'features/trending-gifs'
 
 const GifsPage = () => {
-  return <Gifs />
+  return <TrendingGifs />
 }
 
 export default GifsPage

@@ -30,7 +30,7 @@ export const fetchTrendingGifs = createAsyncThunk<
       })
     } catch (err) {
       return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch gifs',
+        err instanceof Error ? err.message : 'Failed to fetch trending-gifs',
       )
     }
   },
@@ -42,7 +42,7 @@ const trendingGifsSlice = createSlice({
   reducers: {
     resetTrendingGifs: (state) => {
       state.trendingGifs = []
-      state.offset = state.offset - 12
+      state.offset = 0
     },
   },
   extraReducers: (builder) => {
