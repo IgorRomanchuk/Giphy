@@ -45,7 +45,7 @@ const GifsSearch = () => {
       fetchData={fetchData}
       gifsArray={gifsBySearchValue}
       error={error}
-      directory={'../trending-gifs'}
+      directory={'../gifs'}
     />
   )
 }
