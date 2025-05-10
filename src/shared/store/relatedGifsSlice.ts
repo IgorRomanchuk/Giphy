@@ -43,7 +43,7 @@ const relatedGifsSlice = createSlice({
   reducers: {
     resetRelatedGifs: (state) => {
       state.relatedGifs = []
-      state.offset = state.offset - 12
+      state.offset = 0
     },
   },
   extraReducers: (builder) => {

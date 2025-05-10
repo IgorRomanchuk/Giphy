@@ -1,6 +1,6 @@
 import Gif from '@features/gif'
-import RelatedGifs from '@pages/related-gifs'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
+import RelatedGifs from 'features/related-gifs'
 import TrendingGifs from 'features/trending-gifs'
 import { useParams } from 'react-router-dom'
 
@@ -9,12 +9,12 @@ import s from './gif.module.scss'
 const GifPage = () => {
   const { id } = useParams()
 
-  const { error } = useAppSelector((state) => state.gif)
+  const { gif } = useAppSelector((state) => state.gif)
 
   return (
     <div className={s.container}>
       <Gif id={id!} />
-      {error ? <TrendingGifs /> : <RelatedGifs id={id!} />}
+      {gif ? <RelatedGifs id={id!} /> : <TrendingGifs showImageError={false} />}
     </div>
   )
 }

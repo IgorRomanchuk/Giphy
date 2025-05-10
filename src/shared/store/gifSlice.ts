@@ -46,6 +46,7 @@ const gifsSlice = createSlice({
       .addCase(fetchGif.rejected, (state, action) => {
         state.isLoading = false
         state.error = action.payload as string
+        state.gif = null
       })
   },
 })

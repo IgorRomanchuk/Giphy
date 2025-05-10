@@ -6,17 +6,28 @@ import s from './emptyState.module.scss'
 interface Props extends HTMLAttributes<HTMLDivElement> {
   errorMessage?: string | null
   textBody?: ReactNode
+  arrow?: boolean
+  showImageError?: boolean
 }
 
-const EmptyState: FC<Props> = ({ errorMessage, textBody, ...rest }) => {
+const EmptyState: FC<Props> = ({
+  errorMessage,
+  textBody,
+  arrow = true,
+  showImageError = true,
+  ...rest
+}) => {
   return (
     <div {...rest}>
-      <img
-        src={cryingCowboyEmoji}
-        width={300}
-        height={300}
-        alt="crying-cowbow-emoji"
-      />
+      {showImageError && (
+        <img
+          src={cryingCowboyEmoji}
+          width={300}
+          height={300}
+          alt="crying-cowbow-emoji"
+        />
+      )}
+
       {errorMessage && <p>{errorMessage}</p>}
       {textBody ? (
         textBody
@@ -26,7 +37,7 @@ const EmptyState: FC<Props> = ({ errorMessage, textBody, ...rest }) => {
           <p>For GIFs that DO exist, here&apos;s our trending feed...</p>
         </>
       )}
-      <div className={s.arrowDown}></div>
+      {arrow && <div className={s.arrowDown}></div>}
     </div>
   )
 }

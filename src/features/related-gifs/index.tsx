@@ -1,9 +1,12 @@
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import useScreenSize from '@shared/hooks/useScreenSize'
-import { fetchRelatedGifs } from '@shared/store/relatedGifsSlice'
+import {
+  fetchRelatedGifs,
+  resetRelatedGifs,
+} from '@shared/store/relatedGifsSlice'
+import GifsContainer from '@shared/ui/GifsContainer'
 import { FC, useEffect } from 'react'
-import GifsContainer from 'shared/ui/GifsContainer'
 
 import s from './relatedGifs.module.scss'
 
@@ -25,6 +28,8 @@ const RelatedGifs: FC<Props> = ({ id }) => {
   }
 
   useEffect(() => {
+    dispatch(resetRelatedGifs())
+
     const promise = dispatch(fetchRelatedGifs({ offset: 0, id }))
 
     return () => {
@@ -46,6 +51,7 @@ const RelatedGifs: FC<Props> = ({ id }) => {
         gifsArray={relatedGifs}
         error={error}
         directory={'../gifs'}
+        showImageError={false}
       />
     </div>
   )

@@ -48,7 +48,7 @@ const gifsBySearchValueSlice = createSlice({
     },
     resetGifs: (state) => {
       state.gifsBySearchValue = []
-      state.offset = state.offset - 12
+      state.offset = 0
     },
   },
   extraReducers: (builder) => {

@@ -2,10 +2,14 @@ import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import useScreenSize from '@shared/hooks/useScreenSize'
 import { fetchTrendingGifs, resetTrendingGifs } from '@shared/store/gifsSlice'
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import GifsContainer from 'shared/ui/GifsContainer'
 
-const TrendingGifs = () => {
+interface Props {
+  showImageError?: boolean
+}
+
+const TrendingGifs: FC<Props> = ({ showImageError }) => {
   const dispatch = useAppDispatch()
 
   const screenSize = useScreenSize()
@@ -39,6 +43,7 @@ const TrendingGifs = () => {
       gifsArray={trendingGifs}
       error={error}
       directory={'gifs'}
+      showImageError={showImageError}
     />
   )
 }
