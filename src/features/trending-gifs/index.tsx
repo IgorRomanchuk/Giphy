@@ -7,9 +7,10 @@ import GifsContainer from 'shared/ui/GifsContainer'
 
 interface Props {
   showImageError?: boolean
+  directory?: string
 }
 
-const TrendingGifs: FC<Props> = ({ showImageError }) => {
+const TrendingGifs: FC<Props> = ({ showImageError, directory = 'gifs' }) => {
   const dispatch = useAppDispatch()
 
   const screenSize = useScreenSize()
@@ -42,7 +43,7 @@ const TrendingGifs: FC<Props> = ({ showImageError }) => {
       fetchData={fetchData}
       gifsArray={trendingGifs}
       error={error}
-      directory={'gifs'}
+      directory={directory}
       showImageError={showImageError}
     />
   )
