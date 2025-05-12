@@ -39,14 +39,14 @@ const gifsSlice = createSlice({
         state.error = null
       })
       .addCase(fetchGif.fulfilled, (state, action) => {
-        state.isLoading = false
         state.error = null
         state.gif = action.payload
+        state.isLoading = false
       })
       .addCase(fetchGif.rejected, (state, action) => {
-        state.isLoading = false
         state.error = action.payload as string
         state.gif = null
+        state.isLoading = false
       })
   },
 })

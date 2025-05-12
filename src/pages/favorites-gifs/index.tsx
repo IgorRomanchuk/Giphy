@@ -1,45 +1,7 @@
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import { useAppSelector } from '@shared/hooks/useAppSelector'
+import FavoritesGifs from '@features/favorites-gifs'
 
-import GifsContainer from '../../shared/ui/GifsContainer'
-import s from './favorites.module.scss'
-
-const Favorites = () => {
-  const { favorites } = useAppSelector((state) => state.favorites)
-
-  return (
-    <>
-      {favorites.length ? (
-        <GifsContainer
-          fetchData={() => null}
-          gifsArray={favorites}
-          error={true}
-          directory={'../gifs'}
-        />
-      ) : (
-        <div className={s.wrap}>
-          <div className={s.container}>
-            <div className={s.text}>
-              <p>
-                You don&apos;t have any <span>favorites</span> yet!
-              </p>
-              <p>
-                Add to your favs by clicking the{' '}
-                <FavoriteIcon className={s.icon} /> around GIPHY.
-              </p>
-            </div>
-          </div>
-          <div className={s.area}>
-            <ul className={s.square}>
-              {[...new Array(10)].map((_, i) => (
-                <li key={i}></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
-    </>
-  )
+const FavoritesGifsPage = () => {
+  return <FavoritesGifs />
 }
 
-export default Favorites
+export default FavoritesGifsPage

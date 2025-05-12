@@ -1,5 +1,5 @@
 import Layout from '@app/layout'
-import Favorites from '@pages/favorites-gifs'
+import FavoritesGifsPage from '@pages/favorites-gifs'
 import GifPage from '@pages/gif'
 import GifsPage from '@pages/gifs'
 import GifsSearchPage from '@pages/gifs-search'
@@ -18,7 +18,7 @@ const Routes = () => {
         },
         {
           path: '/favorites-gifs',
-          element: <Favorites />,
+          element: <FavoritesGifsPage />,
         },
         {
           path: '/search/:searchValue',

@@ -19,9 +19,11 @@
 .text {
   color: white;
   font-weight: 600;
+
   span {
     color: #e46363;
   }
+
   p:nth-child(2) {
     display: flex;
     justify-content: center;
