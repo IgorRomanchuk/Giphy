@@ -13,6 +13,7 @@ interface IProps {
   error?: string | null | boolean
   directory: string
   showImageError?: boolean
+  loading?: boolean
 }
 
 const GifsContainer = ({
@@ -21,6 +22,7 @@ const GifsContainer = ({
   error,
   directory,
   showImageError,
+  loading = true,
 }: IProps) => {
   const navigate = useNavigate()
 
@@ -39,7 +41,7 @@ const GifsContainer = ({
             dataLength={gifsArray.length}
             next={fetchData}
             hasMore={!error}
-            loader={<Loading />}
+            loader={loading && <Loading />}
             endMessage={
               <EmptyState
                 showImageError={showImageError}

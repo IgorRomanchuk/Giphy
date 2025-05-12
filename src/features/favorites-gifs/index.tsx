@@ -11,8 +11,9 @@ const FavoritesGifs = () => {
         <GifsContainer
           fetchData={() => null}
           gifsArray={favorites}
-          error={true}
+          error={false}
           directory={'../gifs'}
+          loading={false}
         />
       ) : (
         <EmptyState />
