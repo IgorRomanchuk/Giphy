@@ -1,11 +1,8 @@
 import { GifSchema } from '@shared/models/gif.model'
 import EmptyState from '@shared/ui/EmptyState'
+import Masonry from '@shared/ui/GifsContainer/Masonry'
 import Loading from '@shared/ui/Loading'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
-import { useNavigate } from 'react-router-dom'
-
-import CardGif from '../CardGif'
 
 interface IProps {
   gifsArray: GifSchema[]
@@ -24,15 +21,6 @@ const GifsContainer = ({
   showImageError,
   loading = true,
 }: IProps) => {
-  const navigate = useNavigate()
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
-
   return (
     <>
       {gifsArray && (
@@ -50,23 +38,7 @@ const GifsContainer = ({
               />
             }
           >
-            <ResponsiveMasonry
-              columnsCountBreakPoints={{ 350: 1, 550: 2, 830: 3, 1080: 4 }}
-            >
-              <Masonry gutter="10px">
-                {gifsArray.map((image: GifSchema) => (
-                  <div
-                    onClick={() => {
-                      navigate(`${directory}/${image.id}`)
-                      scrollToTop()
-                    }}
-                    key={image.id}
-                  >
-                    <CardGif image={image} />
-                  </div>
-                ))}
-              </Masonry>
-            </ResponsiveMasonry>
+            <Masonry data={gifsArray} directory={directory} />
           </InfiniteScroll>
         </div>
       )}
