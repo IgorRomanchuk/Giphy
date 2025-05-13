@@ -22,9 +22,11 @@ input {
   position: sticky;
   border-radius: 5px 0 0 5px;
   border: none;
+
   &:focus {
     outline: none;
   }
+
   &::placeholder {
     color: gray;
     font-size: 20px;
@@ -50,6 +52,7 @@ input {
   align-items: center;
   justify-content: center;
   border-radius: 0 5px 5px 0;
+
   svg {
     font-size: 36px;
   }

@@ -14,14 +14,15 @@ interface IProps {
 
 const SearchInput = ({ width }: IProps) => {
   const dispatch = useAppDispatch()
+
   const navigate = useNavigate()
+
   const { value, gifsBySearchValue } = useAppSelector(
     (state) => state.gifsBySearchValue,
   )
 
   const handleSearch = () => {
     if (!gifsBySearchValue.length) {
-      // dispatch(resetTrendingGifs())
       navigate(`/search/${value}`)
     }
     if (value) {
@@ -50,7 +51,7 @@ const SearchInput = ({ width }: IProps) => {
           type="text"
           placeholder="search"
         />
-        <div className={s.searchIcon} onClick={() => handleSearch()}>
+        <div className={s.searchIcon} onClick={handleSearch}>
           <SearchIcon />
         </div>
       </div>
