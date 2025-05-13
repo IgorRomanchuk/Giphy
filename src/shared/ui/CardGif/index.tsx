@@ -28,7 +28,7 @@ const CardGif = ({ image, large }: IProps) => {
         className={s.boxImage}
         style={{
           paddingBottom: `${aspectRatio}%`,
-          backgroundColor: `${cardColors[getRandomInt(4)]}`,
+          backgroundColor: `${cardColors[getRandomInt()]}`,
         }}
       >
         <img
