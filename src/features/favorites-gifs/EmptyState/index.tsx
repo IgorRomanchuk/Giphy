@@ -1,6 +1,6 @@
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
-import s from './EmptyState.module.scss'
+import s from './emptyState.module.scss'
 
 const EmptyState = () => {
   return (

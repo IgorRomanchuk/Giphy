@@ -3,7 +3,7 @@ import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
 import { getRandomInt } from '@shared/ui/CardGif/utils/get-random-int'
 import { useState } from 'react'
 
-import s from './CardGif.module.scss'
+import s from './cardGif.module.scss'
 
 interface IProps {
   image: GifSchema

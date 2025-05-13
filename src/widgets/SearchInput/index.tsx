@@ -6,7 +6,7 @@ import { resetGifs, setValue } from '@shared/store/gifsBySearchValueSlice'
 import { ChangeEvent, KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import s from './SearchInput.module.scss'
+import s from './searchInput.module.scss'
 
 interface IProps {
   width: string

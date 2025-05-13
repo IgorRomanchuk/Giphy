@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import SearchInput from '../../../widgets/SearchInput'
-import s from './index.module.scss'
+import s from './header.module.scss'
 
 const Header = () => {
   const [width, setWidth] = useState('firstWidth')
