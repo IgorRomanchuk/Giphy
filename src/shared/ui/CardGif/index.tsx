@@ -3,6 +3,8 @@ import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
 import { getRandomInt } from '@shared/ui/CardGif/utils/get-random-int'
 import { useState } from 'react'
 
+import s from './CardGif.module.scss'
+
 interface IProps {
   image: GifSchema
   large?: boolean
@@ -21,33 +23,20 @@ const CardGif = ({ image, large }: IProps) => {
   const aspectRatio = (originalHeight / originalWidth) * 100
 
   return (
-    <div
-      style={{
-        borderRadius: '10px',
-        cursor: 'pointer',
-        backgroundColor: `${cardColors[getRandomInt(4)]}`,
-        width: '100%',
-        overflow: 'hidden',
-      }}
-    >
+    <div className={s.wrap}>
       <div
+        className={s.boxImage}
         style={{
           paddingBottom: `${aspectRatio}%`,
-          position: 'relative',
+          backgroundColor: `${cardColors[getRandomInt(4)]}`,
         }}
       >
         <img
+          className={s.image}
           loading="lazy"
           alt="GIF"
           src={large ? image.images.original.url : image.images.downsized.url}
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            borderRadius: '10px',
             opacity: loaded ? 1 : 0,
           }}
           onLoad={() => setLoaded(true)}

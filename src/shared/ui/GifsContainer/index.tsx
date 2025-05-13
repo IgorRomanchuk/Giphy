@@ -1,8 +1,8 @@
 import { GifSchema } from '@shared/models/gif.model'
 import EmptyState from '@shared/ui/EmptyState'
-import Masonry from '@shared/ui/GifsContainer/Masonry'
 import Loading from '@shared/ui/Loading'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import MasonryUi from 'shared/ui/GifsContainer/MasonryUi'
 
 interface IProps {
   gifsArray: GifSchema[]
@@ -38,7 +38,7 @@ const GifsContainer = ({
               />
             }
           >
-            <Masonry data={gifsArray} directory={directory} />
+            <MasonryUi data={gifsArray} directory={directory} />
           </InfiniteScroll>
         </div>
       )}
