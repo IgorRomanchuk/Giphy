@@ -1,13 +1,5 @@
+import { initialState } from '@features/favorites-gifs/store/constants/initial-state'
 import { createSlice } from '@reduxjs/toolkit'
-import { GifSchema } from '@shared/models/gif.model'
-
-interface Favorites {
-  favorites: GifSchema[]
-}
-
-const initialState: Favorites = {
-  favorites: JSON.parse(localStorage.getItem('favoritesGifs') || '[]') || [],
-}
 
 const favoritesSlice = createSlice({
   name: 'favorites',

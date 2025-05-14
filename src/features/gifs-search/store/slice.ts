@@ -1,43 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { GifsApi } from '@shared/api/gifs.api'
-import { GifSchema } from '@shared/models/gif.model'
-
-interface gifsBySearchValueState {
-  gifsBySearchValue: GifSchema[]
-  offset: number
-  isLoading: boolean
-  error: null | string
-  value: string
-}
-
-const initialState: gifsBySearchValueState = {
-  gifsBySearchValue: [],
-  offset: 0,
-  isLoading: false,
-  error: null,
-  value: '',
-}
-
-export const fetchGifsBySearchValue = createAsyncThunk<
-  GifSchema[],
-  { offset: number; searchValue: string | undefined },
-  { rejectValue: string }
->(
-  'gifs/fetchGifsBySearchValue',
-  async function ({ offset, searchValue }, { rejectWithValue }) {
-    try {
-      return await GifsApi.getGifsByValue({
-        q: searchValue,
-        offset,
-        limit: 12,
-      })
-    } catch (err) {
-      return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch gifs',
-      )
-    }
-  },
-)
+import { initialState } from '@features/gifs-search/store/constants/initial-state'
+import { fetchGifsBySearchValue } from '@features/gifs-search/store/thunk'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const gifsBySearchValueSlice = createSlice({
   name: 'gifs',

@@ -1,8 +1,11 @@
+import {
+  deleteFavoriteGif,
+  setFavoriteGif,
+} from '@features/favorites-gifs/store/slice'
+import { fetchGif } from '@features/gif/store/thunk'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import { deleteFavoriteGif, setFavoriteGif } from '@shared/store/favoritesSlice'
-import { fetchGif } from '@shared/store/gifSlice'
 import CardGif from '@shared/ui/CardGif'
 import EmptyState from '@shared/ui/EmptyState'
 import Loading from '@shared/ui/Loading'

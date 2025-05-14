@@ -1,40 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { GifsApi } from '@shared/api/gifs.api'
-import { GifSchema } from '@shared/models/gif.model'
-
-interface TrendingGifsState {
-  trendingGifs: GifSchema[]
-  offset: number
-  isLoading: boolean
-  error: null | string
-}
-
-const initialState: TrendingGifsState = {
-  trendingGifs: [],
-  offset: 0,
-  isLoading: false,
-  error: null,
-}
-
-export const fetchTrendingGifs = createAsyncThunk<
-  GifSchema[],
-  number,
-  { rejectValue: string }
->(
-  'trendingGifs/fetchTrendingGifs',
-  async function (offset, { rejectWithValue }) {
-    try {
-      return await GifsApi.getTrendingGifs({
-        offset,
-        limit: 12,
-      })
-    } catch (err) {
-      return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch gifs',
-      )
-    }
-  },
-)
+import { initialState } from '@features/trending-gifs/store/constants/initial-state'
+import { fetchTrendingGifs } from '@features/trending-gifs/store/thunk'
+import { createSlice } from '@reduxjs/toolkit'
 
 const trendingGifsSlice = createSlice({
   name: 'trendingGifs',

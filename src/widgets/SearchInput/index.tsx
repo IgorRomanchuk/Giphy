@@ -1,8 +1,8 @@
+import { resetGifs, setValue } from '@features/gifs-search/store/slice'
+import { fetchGifsBySearchValue } from '@features/gifs-search/store/thunk'
 import SearchIcon from '@mui/icons-material/Search'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import { fetchGifsBySearchValue } from '@shared/store/gifsBySearchValueSlice'
-import { resetGifs, setValue } from '@shared/store/gifsBySearchValueSlice'
 import { ChangeEvent, KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 

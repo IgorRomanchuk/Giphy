@@ -1,13 +1,10 @@
 import favoriteIcon from '@assets/img/80h.gif'
 import giphyLogo from '@assets/img/giphyLogo.png'
+import { resetGifs, setValue } from '@features/gifs-search/store/slice'
+import { fetchGifsBySearchValue } from '@features/gifs-search/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import useScreenSize from '@shared/hooks/useScreenSize'
-import {
-  fetchGifsBySearchValue,
-  resetGifs,
-  setValue,
-} from '@shared/store/gifsBySearchValueSlice'
 import { categories } from '@shared/ui/Header/constants/categories'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'

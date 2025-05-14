@@ -1,9 +1,9 @@
+import favoritesSlice from '@features/favorites-gifs/store/slice'
+import gifSlice from '@features/gif/store/slice'
+import gifsBySearchValueSlice from '@features/gifs-search/store/slice'
+import relatedGifsSlice from '@features/related-gifs/store/slice'
+import trendingGifsSlice from '@features/trending-gifs/store/slice'
 import { configureStore } from '@reduxjs/toolkit'
-import favoritesSlice from '@shared/store/favoritesSlice'
-import gifsBySearchValueSlice from '@shared/store/gifsBySearchValueSlice'
-import gifSlice from '@shared/store/gifSlice'
-import trendingGifsSlice from '@shared/store/gifsSlice'
-import relatedGifsSlice from '@shared/store/relatedGifsSlice'
 
 const store = configureStore({
   reducer: {

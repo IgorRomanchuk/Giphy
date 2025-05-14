@@ -1,10 +1,8 @@
+import { resetRelatedGifs } from '@features/related-gifs/store/slice'
+import { fetchRelatedGifs } from '@features/related-gifs/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import useScreenSize from '@shared/hooks/useScreenSize'
-import {
-  fetchRelatedGifs,
-  resetRelatedGifs,
-} from '@shared/store/relatedGifsSlice'
 import GifsContainer from '@shared/ui/GifsContainer'
 import { FC, useEffect } from 'react'
 

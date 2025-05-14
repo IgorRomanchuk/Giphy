@@ -1,7 +1,8 @@
+import { resetTrendingGifs } from '@features/trending-gifs/store/slice'
+import { fetchTrendingGifs } from '@features/trending-gifs/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import useScreenSize from '@shared/hooks/useScreenSize'
-import { fetchTrendingGifs, resetTrendingGifs } from '@shared/store/gifsSlice'
 import { FC, useEffect } from 'react'
 import GifsContainer from 'shared/ui/GifsContainer'
 
