@@ -1,8 +1,5 @@
 import { resetSearchGifs } from '@features/gifs-search/store/slice'
-import { fetchGifsBySearchValue } from '@features/gifs-search/store/thunk'
 import SearchIcon from '@mui/icons-material/Search'
-import { useAppDispatch } from '@shared/hooks/useAppDispatch'
-import { useAppSelector } from '@shared/hooks/useAppSelector'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,22 +7,14 @@ import s from './searchInput.module.scss'
 
 interface IProps {
   width: string
+  value: string
+  setValue: (e: string) => void
 }
 
-const SearchInput = ({ width }: IProps) => {
-  const [value, setValue] = useState('')
-  const dispatch = useAppDispatch()
-
+const SearchInput = ({ width, value, setValue }: IProps) => {
   const navigate = useNavigate()
 
-  const { gifsBySearchValue } = useAppSelector(
-    (state) => state.gifsBySearchValue,
-  )
-
   const handleSearch = () => {
-    // dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
-    dispatch(resetSearchGifs())
-
     const url = value.replace(/ /g, '-')
     navigate(`/search/${url}`)
   }

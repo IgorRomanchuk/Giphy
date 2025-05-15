@@ -1,20 +1,29 @@
 import favoriteIcon from '@assets/img/80h.gif'
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import s from './favoritesButton.module.scss'
 
-const FavoritesButton = () => {
+interface Props {
+  setValue: (e: string) => void
+}
+
+const FavoritesButton: FC<Props> = ({ setValue }) => {
   const [imageHover, setImageHover] = useState<boolean>(false)
 
   const navigate = useNavigate()
+
+  const navigateToFavoritesPage = () => {
+    setValue('')
+    navigate('/favorites-gifs')
+  }
 
   return (
     <button
       className={s.favoritesButton}
       onMouseOver={() => setImageHover(true)}
       onMouseLeave={() => setImageHover(false)}
-      onClick={() => navigate('/favorites-gifs')}
+      onClick={navigateToFavoritesPage}
     >
       <div className={s.imageWrapper}>
         <img

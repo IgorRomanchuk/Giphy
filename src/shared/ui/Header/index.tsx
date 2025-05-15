@@ -12,6 +12,7 @@ const Header = () => {
   const [width, setWidth] = useState('firstWidth')
   const [headerPosition, setHeaderPosition] = useState('')
   const [logoPosition, setLogoPosition] = useState('firstPosition')
+  const [value, setValue] = useState('')
 
   const navigate = useNavigate()
 
@@ -55,10 +56,10 @@ const Header = () => {
             height={50}
             onClick={navigateToHome}
           />
-          <MenuCategories />
-          <FavoritesButton />
+          <MenuCategories setValue={setValue} />
+          <FavoritesButton setValue={setValue} />
         </div>
-        <SearchInput width={width} />
+        <SearchInput width={width} value={value} setValue={setValue} />
       </header>
       <div className={s.fakeDiv}></div>
     </>
