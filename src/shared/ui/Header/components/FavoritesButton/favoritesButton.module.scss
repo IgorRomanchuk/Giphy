@@ -1,0 +1,26 @@
+.favoritesButton {
+  color: white;
+  display: flex;
+  align-content: center;
+  height: 39px;
+  background-color: rgb(62, 62, 62);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  display: block;
+  overflow: hidden;
+}
+
+.imageScale {
+  transform:scale(1.5);
+  height: 35px;
+  width: 39px;
+  transform-origin: 50% 40%;
+}
+
+.title {
+  font-size: 16px;
+  margin: auto 10px;
+}

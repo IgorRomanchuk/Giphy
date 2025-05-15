@@ -2,7 +2,6 @@ import { resetRelatedGifs } from '@features/related-gifs/store/slice'
 import { fetchRelatedGifs } from '@features/related-gifs/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import useScreenSize from '@shared/hooks/useScreenSize'
 import GifsContainer from '@shared/ui/GifsContainer'
 import { FC, useEffect } from 'react'
 
@@ -14,8 +13,6 @@ interface Props {
 
 const RelatedGifs: FC<Props> = ({ id }) => {
   const dispatch = useAppDispatch()
-
-  const screenSize = useScreenSize()
 
   const { offset, relatedGifs, error } = useAppSelector(
     (state) => state.relatedGifs,
@@ -34,12 +31,6 @@ const RelatedGifs: FC<Props> = ({ id }) => {
       promise?.abort()
     }
   }, [id])
-
-  useEffect(() => {
-    if (screenSize.height && document.body.scrollHeight < screenSize.height) {
-      fetchData()
-    }
-  }, [relatedGifs.length])
 
   return (
     <div>

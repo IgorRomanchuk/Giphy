@@ -1,16 +1,22 @@
 .header {
   position: absolute;
-  top: 0px;
+  top: 0;
   width: 100%;
 }
 
-.logo{
+.container {
+  display: flex;
+  max-width: 1080px;
+  background-color: black;
+}
+
+.logo {
   cursor: pointer;
 }
 
 .firstHeaderPosition {
   position: absolute;
-  top: 0px;
+  top: 0;
   z-index: 499;
 }
 
@@ -35,138 +41,9 @@
   clear: both;
 }
 
-.menu {
-  color: white;
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  height: 50px;
-}
-
-.button {
-  position: relative;
-  height: 40px;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-  margin-left: 10px;
-  cursor: pointer;
-
-  h2 {
-    font-size: 16px;
-  }
-}
-
-.favoritesButton {
-  color: white;
-  display: flex;
-  align-content: center;
-  height: 39px;
-  background-color: rgb(62, 62, 62);
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-.imageWrapper {
-  display: block;
-  overflow: hidden;
-}
-
-.imageScale {
-  transform:scale(1.5);
-  height: 35px;
-  width: 39px;
-  transform-origin: 50% 40%;
-}
-
-.sports::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: '';
-  height: 3px;
-  width: 100%;
-  background: rgb(90,194,233);
-  background: linear-gradient(86deg, rgba(90,194,233,1) 0%, rgba(32,123,218,1) 48%, rgba(16,129,232,1) 100%);
-}
-.sports:hover {
-  background: linear-gradient(86deg, rgba(24,203,232,1) 12%, rgba(14,162,200,1) 34%, rgba(3,86,143,1) 73%);
-}
-
-.artist::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: '';
-  height: 3px;
-  width: 100%;
-  background: rgb(16,129,232);
-  background: linear-gradient(86deg, rgba(16,129,232,1) 0%, rgba(8,99,194,1) 48%, rgba(0,85,162,1) 100%);
-}
-
-.artist:hover {
-  background: linear-gradient(86deg, rgba(16,97,150,1) 12%, rgba(14,71,113,1) 46%, rgba(13,90,124,1) 78%);
-}
-
-.nature::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: '';
-  height: 3px;
-  width: 100%;
-  background: rgb(121,23,200);
-  background: linear-gradient(86deg, rgba(121,23,200,1) 0%, rgba(102,10,177,1) 48%, rgba(86,6,150,1) 100%);
-}
-
-.nature:hover {
-  background: linear-gradient(86deg, rgba(90,16,150,1) 12%, rgba(45,14,113,1) 46%, rgba(72,13,124,1) 78%);
-}
-
-.animals::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: '';
-  height: 3px;
-  width: 100%;
-  background: rgb(156,23,200);
-  background: linear-gradient(86deg, rgba(156,23,200,1) 0%, rgba(131,7,172,1) 48%, rgba(108,3,143,1) 100%);
-}
-
-.animals:hover {
-  background: linear-gradient(86deg, rgba(136,16,150,1) 12%, rgba(100,14,113,1) 46%, rgba(111,13,124,1) 78%);
-}
-
-.entertainment::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: '';
-  height: 3px;
-  width: 100%;
-  background: rgb(232,24,231);
-  background: linear-gradient(86deg, rgba(232,24,231,1) 0%, rgba(200,14,199,1) 48%, rgba(143,3,142,1) 100%);
-}
-
-.entertainment:hover {
-  background: linear-gradient(86deg, rgba(207,41,228,1) 12%, rgba(176,12,201,1) 46%, rgba(190,15,212,1) 78%);
-}
-
-@media screen and (max-width: 890px) {
-  .button h2 {
-    font-size: 13px;
-  }
-}
-
 @media screen and (max-width: 830px) {
   .header div {
     justify-content: space-between;
-  }
-
-  .menu {
-    display: none;
   }
 
   .fakeDiv {

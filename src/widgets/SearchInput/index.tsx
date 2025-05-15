@@ -1,9 +1,9 @@
-import { resetGifs, setValue } from '@features/gifs-search/store/slice'
+import { resetSearchGifs } from '@features/gifs-search/store/slice'
 import { fetchGifsBySearchValue } from '@features/gifs-search/store/thunk'
 import SearchIcon from '@mui/icons-material/Search'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import { ChangeEvent, KeyboardEvent } from 'react'
+import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import s from './searchInput.module.scss'
@@ -13,24 +13,21 @@ interface IProps {
 }
 
 const SearchInput = ({ width }: IProps) => {
+  const [value, setValue] = useState('')
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
 
-  const { value, gifsBySearchValue } = useAppSelector(
+  const { gifsBySearchValue } = useAppSelector(
     (state) => state.gifsBySearchValue,
   )
 
   const handleSearch = () => {
-    if (!gifsBySearchValue.length) {
-      navigate(`/search/${value}`)
-    }
-    if (value) {
-      dispatch(resetGifs())
-      dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
-      const url = value.replace(/ /g, '-')
-      navigate(`/search/${url}`)
-    }
+    // dispatch(fetchGifsBySearchValue({ offset: 0, searchValue: value }))
+    dispatch(resetSearchGifs())
+
+    const url = value.replace(/ /g, '-')
+    navigate(`/search/${url}`)
   }
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -45,7 +42,7 @@ const SearchInput = ({ width }: IProps) => {
         <input
           onKeyDown={handleKeyDown}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            dispatch(setValue(e.target.value))
+            setValue(e.target.value)
           }
           value={value}
           type="text"

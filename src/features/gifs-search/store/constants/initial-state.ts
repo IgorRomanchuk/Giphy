@@ -5,5 +5,4 @@ export const initialState: InitialState = {
   offset: 0,
   isLoading: false,
   error: null,
-  value: '',
 }

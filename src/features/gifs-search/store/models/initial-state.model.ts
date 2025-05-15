@@ -5,5 +5,4 @@ export interface InitialState {
   offset: number
   isLoading: boolean
   error: null | string
-  value: string
 }

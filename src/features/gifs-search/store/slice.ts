@@ -1,15 +1,12 @@
 import { initialState } from '@features/gifs-search/store/constants/initial-state'
 import { fetchGifsBySearchValue } from '@features/gifs-search/store/thunk'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const gifsBySearchValueSlice = createSlice({
   name: 'gifs',
   initialState,
   reducers: {
-    setValue: (state, action: PayloadAction<string | undefined>) => {
-      state.value = action.payload || ''
-    },
-    resetGifs: (state) => {
+    resetSearchGifs: (state) => {
       state.gifsBySearchValue = []
       state.offset = 0
     },
@@ -33,6 +30,6 @@ const gifsBySearchValueSlice = createSlice({
   },
 })
 
-export const { setValue, resetGifs } = gifsBySearchValueSlice.actions
+export const { resetSearchGifs } = gifsBySearchValueSlice.actions
 
 export default gifsBySearchValueSlice.reducer
