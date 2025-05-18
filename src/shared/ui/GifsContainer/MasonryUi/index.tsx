@@ -1,15 +1,16 @@
 import { GifSchema } from '@shared/models/gif.model'
-import CardGif from '@shared/ui/CardGif'
 import { FC } from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import { useNavigate } from 'react-router-dom'
+import ImageCard from 'shared/ui/ImageCard'
 
 interface Props {
   data: GifSchema[]
   directory: string
+  typeCard: 'gif' | 'sticker'
 }
 
-const MasonryUi: FC<Props> = ({ data, directory }) => {
+const MasonryUi: FC<Props> = ({ data, directory, typeCard }) => {
   const navigate = useNavigate()
 
   const navigateToGifById = (id: string) => {
@@ -28,7 +29,7 @@ const MasonryUi: FC<Props> = ({ data, directory }) => {
       <Masonry gutter="10px">
         {data.map((image: GifSchema) => (
           <div onClick={() => navigateToGifById(image.id)} key={image.id}>
-            <CardGif image={image} />
+            <ImageCard image={image} typeCard={typeCard} />
           </div>
         ))}
       </Masonry>

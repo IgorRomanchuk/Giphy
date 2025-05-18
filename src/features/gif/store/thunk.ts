@@ -11,7 +11,7 @@ export const fetchGif = createAsyncThunk<
     return await GifsApi.getGifById(id)
   } catch (err) {
     return rejectWithValue(
-      err instanceof Error ? err.message : 'Failed to fetch gifs',
+      err instanceof Error ? err.message : 'Failed to fetch images',
     )
   }
 })

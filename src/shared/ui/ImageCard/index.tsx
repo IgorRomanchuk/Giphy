@@ -1,16 +1,17 @@
 import { GifSchema } from '@shared/models/gif.model'
-import { cardColors } from '@shared/ui/CardGif/constants/cardColors'
-import { getRandomInt } from '@shared/ui/CardGif/utils/get-random-int'
+import { cardColors } from '@shared/ui/ImageCard/constants/cardColors'
+import { getRandomInt } from '@shared/ui/ImageCard/utils/get-random-int'
 import { useState } from 'react'
 
-import s from './cardGif.module.scss'
+import s from './imageCard.module.scss'
 
 interface IProps {
   image: GifSchema
   large?: boolean
+  typeCard?: 'gif' | 'sticker'
 }
 
-const CardGif = ({ image, large }: IProps) => {
+const ImageCard = ({ image, large, typeCard = 'gif' }: IProps) => {
   const [loaded, setLoaded] = useState(false)
 
   const originalWidth = large
@@ -25,10 +26,11 @@ const CardGif = ({ image, large }: IProps) => {
   return (
     <div className={s.wrap}>
       <div
-        className={s.boxImage}
+        className={`${s.boxImage} ${typeCard === 'sticker' && s.sticker}`}
         style={{
           paddingBottom: `${aspectRatio}%`,
-          backgroundColor: `${cardColors[getRandomInt()]}`,
+          backgroundColor:
+            typeCard === 'gif' ? `${cardColors[getRandomInt()]}` : '',
         }}
       >
         <img
@@ -46,4 +48,4 @@ const CardGif = ({ image, large }: IProps) => {
   )
 }
 
-export default CardGif
+export default ImageCard

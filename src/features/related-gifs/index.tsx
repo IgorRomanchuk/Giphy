@@ -39,7 +39,7 @@ const RelatedGifs: FC<Props> = ({ id }) => {
         fetchData={fetchData}
         gifsArray={relatedGifs}
         error={error}
-        directory={'../gifs'}
+        directory={'../images'}
         showImageError={false}
       />
     </div>

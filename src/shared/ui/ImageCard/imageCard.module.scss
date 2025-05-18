@@ -18,3 +18,8 @@
   object-fit: cover;
   border-radius: 10px;
 }
+
+.sticker {
+  background: url('../../../assets/img/sticker-background.png') 0 0;
+  background-size: calc(100% / 4) auto;
+}

@@ -12,7 +12,7 @@ const FavoritesGifs = () => {
           fetchData={() => null}
           gifsArray={favorites}
           error={false}
-          directory={'../gifs'}
+          directory={'../images'}
           loading={false}
         />
       ) : (

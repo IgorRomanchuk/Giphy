@@ -1,22 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { GifsApi } from '@shared/api/gifs.api'
+import { StickersApi } from '@shared/api/stickers.api'
 import { GifSchema } from '@shared/models/gif.model'
 
-export const fetchTrendingGifs = createAsyncThunk<
+export const fetchTrendingStickers = createAsyncThunk<
   GifSchema[],
   number,
   { rejectValue: string }
 >(
-  'trendingGifs/fetchTrendingGifs',
+  'trendingStickers/fetchTrendingStickers',
   async function (offset, { rejectWithValue }) {
     try {
-      return await GifsApi.getTrendingGifs({
+      return await StickersApi.getTrendingStickers({
         offset,
         limit: 12,
       })
     } catch (err) {
       return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch images',
+        err instanceof Error ? err.message : 'Failed to fetch stickers',
       )
     }
   },

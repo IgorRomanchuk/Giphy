@@ -6,11 +6,11 @@ import { fetchGif } from '@features/gif/store/thunk'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import CardGif from '@shared/ui/CardGif'
 import EmptyState from '@shared/ui/EmptyState'
 import Loading from '@shared/ui/Loading'
 import { downloadGif } from '@shared/utils/download-gif'
 import { FC, useEffect, useState } from 'react'
+import ImageCard from 'shared/ui/ImageCard'
 
 import s from './gif.module.scss'
 
@@ -68,7 +68,7 @@ const Gif: FC<Props> = ({ id }) => {
   return (
     <div className={s.wrap}>
       <div></div>
-      <CardGif image={gif} large />
+      <ImageCard image={gif} large />
       <div className={s.buttonsContainer}>
         <button
           className={s.button}

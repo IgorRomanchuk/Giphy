@@ -11,6 +11,7 @@ interface IProps {
   directory: string
   showImageError?: boolean
   loading?: boolean
+  typeCard?: 'gif' | 'sticker'
 }
 
 const GifsContainer = ({
@@ -20,6 +21,7 @@ const GifsContainer = ({
   directory,
   showImageError,
   loading = true,
+  typeCard = 'gif',
 }: IProps) => {
   return (
     <>
@@ -38,7 +40,11 @@ const GifsContainer = ({
               />
             }
           >
-            <MasonryUi data={gifsArray} directory={directory} />
+            <MasonryUi
+              data={gifsArray}
+              directory={directory}
+              typeCard={typeCard}
+            />
           </InfiniteScroll>
         </div>
       )}

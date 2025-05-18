@@ -17,7 +17,7 @@ const GifPage = () => {
       {gif ? (
         <RelatedGifs id={id!} />
       ) : (
-        <TrendingGifs directory={'../gifs'} showImageError={false} />
+        <TrendingGifs directory={'../images'} showImageError={false} />
       )}
     </div>
   )
