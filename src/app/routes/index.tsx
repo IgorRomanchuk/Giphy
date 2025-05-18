@@ -17,7 +17,7 @@ const Routes = () => {
           element: <ImagesPage />,
         },
         {
-          path: '/favorites-images',
+          path: '/favorites-gifs',
           element: <FavoritesGifsPage />,
         },
         {
@@ -25,7 +25,7 @@ const Routes = () => {
           element: <GifsSearchPage />,
         },
         {
-          path: '/images/:id',
+          path: '/gifs/:id',
           element: <GifPage />,
         },
         { path: 'not-found', element: <NotFoundPage /> },

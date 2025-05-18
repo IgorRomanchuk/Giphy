@@ -14,11 +14,7 @@ const GifPage = () => {
   return (
     <div className={s.container}>
       <Gif id={id!} />
-      {gif ? (
-        <RelatedGifs id={id!} />
-      ) : (
-        <TrendingGifs directory={'../images'} showImageError={false} />
-      )}
+      {gif ? <RelatedGifs id={id!} /> : <TrendingGifs showImageError={false} />}
     </div>
   )
 }

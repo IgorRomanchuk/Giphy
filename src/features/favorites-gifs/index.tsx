@@ -1,6 +1,6 @@
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import GifsContainer from '@shared/ui/GifsContainer'
 import EmptyState from 'features/favorites-gifs/components/EmptyState'
+import ImageContainer from 'shared/ui/ImageContainer'
 
 const FavoritesGifs = () => {
   const { favorites } = useAppSelector((state) => state.favorites)
@@ -8,11 +8,11 @@ const FavoritesGifs = () => {
   return (
     <>
       {favorites.length ? (
-        <GifsContainer
+        <ImageContainer
           fetchData={() => null}
           gifsArray={favorites}
           error={false}
-          directory={'../images'}
+          directory="../gifs"
           loading={false}
         />
       ) : (

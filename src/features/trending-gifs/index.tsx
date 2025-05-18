@@ -3,14 +3,13 @@ import { fetchTrendingGifs } from '@features/trending-gifs/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import { FC, useEffect } from 'react'
-import GifsContainer from 'shared/ui/GifsContainer'
+import ImageContainer from 'shared/ui/ImageContainer'
 
 interface Props {
   showImageError?: boolean
-  directory?: string
 }
 
-const TrendingGifs: FC<Props> = ({ showImageError, directory = 'images' }) => {
+const TrendingGifs: FC<Props> = ({ showImageError }) => {
   const dispatch = useAppDispatch()
 
   const { offset, trendingGifs, error } = useAppSelector(
@@ -31,11 +30,11 @@ const TrendingGifs: FC<Props> = ({ showImageError, directory = 'images' }) => {
   }, [])
 
   return (
-    <GifsContainer
+    <ImageContainer
       fetchData={fetchData}
       gifsArray={trendingGifs}
       error={error}
-      directory={directory}
+      directory="../gifs"
       showImageError={showImageError}
     />
   )

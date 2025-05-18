@@ -2,8 +2,8 @@ import { resetRelatedGifs } from '@features/related-gifs/store/slice'
 import { fetchRelatedGifs } from '@features/related-gifs/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import GifsContainer from '@shared/ui/GifsContainer'
 import { FC, useEffect } from 'react'
+import ImageContainer from 'shared/ui/ImageContainer'
 
 import s from './relatedGifs.module.scss'
 
@@ -35,11 +35,11 @@ const RelatedGifs: FC<Props> = ({ id }) => {
   return (
     <div>
       <p className={s.title}>Related GIFs</p>
-      <GifsContainer
+      <ImageContainer
         fetchData={fetchData}
         gifsArray={relatedGifs}
         error={error}
-        directory={'../images'}
+        directory="../gifs"
         showImageError={false}
       />
     </div>

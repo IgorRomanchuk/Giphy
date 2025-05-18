@@ -17,7 +17,7 @@ export const fetchGifsBySearchValue = createAsyncThunk<
       })
     } catch (err) {
       return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch images',
+        err instanceof Error ? err.message : 'Failed to fetch gifs',
       )
     }
   },

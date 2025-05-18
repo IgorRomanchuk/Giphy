@@ -1,8 +1,8 @@
 import { GifSchema } from '@shared/models/gif.model'
 import EmptyState from '@shared/ui/EmptyState'
+import MasonryUi from '@shared/ui/ImageContainer/MasonryUi'
 import Loading from '@shared/ui/Loading'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import MasonryUi from 'shared/ui/GifsContainer/MasonryUi'
 
 interface IProps {
   gifsArray: GifSchema[]
@@ -14,7 +14,7 @@ interface IProps {
   typeCard?: 'gif' | 'sticker'
 }
 
-const GifsContainer = ({
+const ImageContainer = ({
   gifsArray,
   fetchData,
   error,
@@ -52,4 +52,4 @@ const GifsContainer = ({
   )
 }
 
-export default GifsContainer
+export default ImageContainer

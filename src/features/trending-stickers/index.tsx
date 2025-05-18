@@ -3,17 +3,13 @@ import { fetchTrendingStickers } from '@features/trending-stickers/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import { FC, useEffect } from 'react'
-import GifsContainer from 'shared/ui/GifsContainer'
+import ImageContainer from 'shared/ui/ImageContainer'
 
 interface Props {
   showImageError?: boolean
-  directory?: string
 }
 
-const TrendingStickers: FC<Props> = ({
-  showImageError,
-  directory = 'stickers',
-}) => {
+const TrendingStickers: FC<Props> = ({ showImageError }) => {
   const dispatch = useAppDispatch()
 
   const { offset, trendingStickers, error } = useAppSelector(
@@ -34,11 +30,11 @@ const TrendingStickers: FC<Props> = ({
   }, [])
 
   return (
-    <GifsContainer
+    <ImageContainer
       fetchData={fetchData}
       gifsArray={trendingStickers}
       error={error}
-      directory={directory}
+      directory="../stickers"
       showImageError={showImageError}
       typeCard="sticker"
     />
