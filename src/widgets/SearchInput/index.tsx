@@ -1,6 +1,6 @@
-import { resetSearchGifs } from '@features/gifs-search/store/slice'
+import CancelIcon from '@mui/icons-material/Cancel'
 import SearchIcon from '@mui/icons-material/Search'
-import { ChangeEvent, KeyboardEvent, useState } from 'react'
+import { ChangeEvent, KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import s from './searchInput.module.scss'
@@ -35,8 +35,11 @@ const SearchInput = ({ width, value, setValue }: IProps) => {
           }
           value={value}
           type="text"
-          placeholder="search"
+          placeholder="Search all GIFs and Stickers"
         />
+        {value.length > 2 && (
+          <CancelIcon className={s.closeIcon} onClick={() => setValue('')} />
+        )}
         <div className={s.searchIcon} onClick={handleSearch}>
           <SearchIcon />
         </div>
