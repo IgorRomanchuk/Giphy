@@ -1,18 +1,29 @@
-import { GifSchema } from '@shared/models/gif.model'
+import { ImageSchema } from '@shared/models/image.model'
 import { cardColors } from '@shared/ui/ImageCard/constants/cardColors'
 import { getRandomInt } from '@shared/ui/ImageCard/utils/get-random-int'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import s from './imageCard.module.scss'
 
 interface IProps {
-  image: GifSchema
+  image: ImageSchema
   large?: boolean
-  typeCard?: 'gif' | 'sticker'
 }
 
-const ImageCard = ({ image, large, typeCard = 'gif' }: IProps) => {
+const ImageCard = ({ image, large }: IProps) => {
   const [loaded, setLoaded] = useState(false)
+
+  const navigate = useNavigate()
+
+  const navigateToImageById = (id: string) => {
+    navigate(`../${image.type}s/${id}`)
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 
   const originalWidth = large
     ? parseInt(image.images['480w_still'].width)
@@ -24,13 +35,13 @@ const ImageCard = ({ image, large, typeCard = 'gif' }: IProps) => {
   const aspectRatio = (originalHeight / originalWidth) * 100
 
   return (
-    <div className={s.wrap}>
+    <div className={s.wrap} onClick={() => navigateToImageById(image.id)}>
       <div
-        className={`${s.boxImage} ${typeCard === 'sticker' && s.sticker}`}
+        className={`${s.boxImage} ${image.type === 'sticker' && s.sticker}`}
         style={{
           paddingBottom: `${aspectRatio}%`,
           backgroundColor:
-            typeCard === 'gif' ? `${cardColors[getRandomInt()]}` : '',
+            image.type === 'gif' ? `${cardColors[getRandomInt()]}` : '',
         }}
       >
         <img

@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { StickersApi } from '@shared/api/stickers.api'
-import { GifSchema } from '@shared/models/gif.model'
+import { ImageSchema } from '@shared/models/image.model'
 
 export const fetchTrendingStickers = createAsyncThunk<
-  GifSchema[],
+  ImageSchema[],
   number,
   { rejectValue: string }
 >(

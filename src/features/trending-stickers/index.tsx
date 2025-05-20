@@ -32,11 +32,9 @@ const TrendingStickers: FC<Props> = ({ showImageError }) => {
   return (
     <ImageContainer
       fetchData={fetchData}
-      gifsArray={trendingStickers}
+      imagesArray={trendingStickers}
       error={error}
-      directory="../stickers"
       showImageError={showImageError}
-      typeCard="sticker"
     />
   )
 }

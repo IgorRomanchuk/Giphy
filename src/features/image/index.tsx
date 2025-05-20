@@ -1,57 +1,57 @@
 import {
-  deleteFavoriteGif,
-  setFavoriteGif,
-} from '@features/favorites-gifs/store/slice'
-import { fetchGif } from '@features/gif/store/thunk'
+  deleteFavoriteImage,
+  setFavoriteImage,
+} from '@features/favorites-images/store/slice'
+import { fetchImage } from '@features/image/store/thunk'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import EmptyState from '@shared/ui/EmptyState'
 import Loading from '@shared/ui/Loading'
-import { downloadGif } from '@shared/utils/download-gif'
+import { downloadImage } from '@shared/utils/download-image'
 import { FC, useEffect, useState } from 'react'
 import ImageCard from 'shared/ui/ImageCard'
 
-import s from './gif.module.scss'
+import s from './image.module.scss'
 
 interface Props {
   id: string
 }
 
-const Gif: FC<Props> = ({ id }) => {
+const Image: FC<Props> = ({ id }) => {
   const [iconColor, setIconColor] = useState<boolean>(false)
 
   const dispatch = useAppDispatch()
 
   const { favorites } = useAppSelector((state) => state.favorites)
 
-  const { gif, isLoading } = useAppSelector((state) => state.gif)
+  const { image, isLoading } = useAppSelector((state) => state.image)
 
-  const findFavoriteGif = () =>
-    gif && favorites.find((item) => item.id === gif.id)
+  const findFavoriteImage = () =>
+    image && favorites.find((item) => item.id === image.id)
 
   const handleOnClick = () => {
-    if (!gif) return
+    if (!image) return
 
-    if (findFavoriteGif()) {
-      dispatch(deleteFavoriteGif(gif))
+    if (findFavoriteImage()) {
+      dispatch(deleteFavoriteImage(image))
       setIconColor(false)
     } else {
-      dispatch(setFavoriteGif(gif))
+      dispatch(setFavoriteImage(image))
       setIconColor(true)
     }
   }
 
   useEffect(() => {
-    dispatch(fetchGif(id))
+    dispatch(fetchImage(id))
   }, [id])
 
   useEffect(() => {
     setIconColor(false)
-    if (gif && findFavoriteGif()) {
+    if (image && findFavoriteImage()) {
       setIconColor(true)
     }
-  }, [gif])
+  }, [image])
 
   if (isLoading) {
     return (
@@ -61,18 +61,18 @@ const Gif: FC<Props> = ({ id }) => {
     )
   }
 
-  if (!gif) {
+  if (!image) {
     return <EmptyState className={s.emptyState} />
   }
 
   return (
     <div className={s.wrap}>
       <div></div>
-      <ImageCard image={gif} large />
+      <ImageCard image={image} large />
       <div className={s.buttonsContainer}>
         <button
           className={s.button}
-          onClick={() => downloadGif(gif.images.original.url, gif.id)}
+          onClick={() => downloadImage(image.images.original.url, image.id)}
         >
           Download
         </button>
@@ -85,4 +85,4 @@ const Gif: FC<Props> = ({ id }) => {
   )
 }
 
-export default Gif
+export default Image

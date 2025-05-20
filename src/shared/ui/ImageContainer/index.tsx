@@ -1,34 +1,30 @@
-import { GifSchema } from '@shared/models/gif.model'
+import { ImageSchema } from '@shared/models/image.model'
 import EmptyState from '@shared/ui/EmptyState'
 import MasonryUi from '@shared/ui/ImageContainer/MasonryUi'
 import Loading from '@shared/ui/Loading'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 interface IProps {
-  gifsArray: GifSchema[]
+  imagesArray: ImageSchema[]
   fetchData: () => void
   error?: string | null | boolean
-  directory: string
   showImageError?: boolean
   loading?: boolean
-  typeCard?: 'gif' | 'sticker'
 }
 
 const ImageContainer = ({
-  gifsArray,
+  imagesArray,
   fetchData,
   error,
-  directory,
   showImageError,
   loading = true,
-  typeCard = 'gif',
 }: IProps) => {
   return (
     <>
-      {gifsArray && (
+      {imagesArray && (
         <div>
           <InfiniteScroll
-            dataLength={gifsArray.length}
+            dataLength={imagesArray.length}
             next={fetchData}
             hasMore={!error}
             loader={loading && <Loading />}
@@ -40,11 +36,7 @@ const ImageContainer = ({
               />
             }
           >
-            <MasonryUi
-              data={gifsArray}
-              directory={directory}
-              typeCard={typeCard}
-            />
+            <MasonryUi data={imagesArray} />
           </InfiniteScroll>
         </div>
       )}

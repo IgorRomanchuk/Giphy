@@ -1,8 +1,8 @@
 import { ImagesModel } from './images.model'
 import { UserModel } from './user.model'
 
-export interface GifSchema {
-  type: string
+export interface ImageSchema {
+  type: 'gif' | 'sticker'
   id: string
   slug: string
   url: string

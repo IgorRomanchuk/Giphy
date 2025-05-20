@@ -32,9 +32,8 @@ const GifsSearch = () => {
   return (
     <ImageContainer
       fetchData={fetchData}
-      gifsArray={gifsBySearchValue}
+      imagesArray={gifsBySearchValue}
       error={error}
-      directory="../gifs"
     />
   )
 }

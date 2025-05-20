@@ -32,9 +32,8 @@ const TrendingGifs: FC<Props> = ({ showImageError }) => {
   return (
     <ImageContainer
       fetchData={fetchData}
-      gifsArray={trendingGifs}
+      imagesArray={trendingGifs}
       error={error}
-      directory="../gifs"
       showImageError={showImageError}
     />
   )

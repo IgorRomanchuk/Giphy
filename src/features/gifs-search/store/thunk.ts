@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { GifsApi } from '@shared/api/gifs.api'
-import { GifSchema } from '@shared/models/gif.model'
+import { ImageSchema } from '@shared/models/image.model'
 
 export const fetchGifsBySearchValue = createAsyncThunk<
-  GifSchema[],
+  ImageSchema[],
   { offset: number; searchValue: string | undefined },
   { rejectValue: string }
 >(

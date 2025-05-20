@@ -1,11 +1,11 @@
 import { api } from '@shared/api'
-import { GifSchema } from '@shared/models/gif.model'
+import { ImageSchema } from '@shared/models/image.model'
 import { ParamsDto } from '@shared/models/params.dto'
 
 export const StickersApi = {
   getTrendingStickers: async (
     params: Partial<ParamsDto>,
-  ): Promise<GifSchema[]> =>
+  ): Promise<ImageSchema[]> =>
     (
       await api.get(`/stickers/trending`, {
         params,
@@ -14,18 +14,15 @@ export const StickersApi = {
 
   getStickersByValue: async (
     params: Partial<ParamsDto>,
-  ): Promise<GifSchema[]> =>
+  ): Promise<ImageSchema[]> =>
     (
       await api.get(`/stickers/search`, {
         params,
       })
     ).data.data,
 
-  getStickerById: async (gifId: string): Promise<GifSchema> =>
-    (await api.get(`/stickers/${gifId}`)).data.data,
-
   getRelatedStickers: async (
     params: Partial<ParamsDto>,
-  ): Promise<GifSchema[]> =>
+  ): Promise<ImageSchema[]> =>
     (await api.get(`/stickers/related`, { params })).data.data,
 }

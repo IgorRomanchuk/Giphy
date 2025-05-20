@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { GifsApi } from '@shared/api/gifs.api'
-import { GifSchema } from '@shared/models/gif.model'
+import { ImageSchema } from '@shared/models/image.model'
 
-export const fetchRelatedGifs = createAsyncThunk<
-  GifSchema[],
+export const fetchRelatedImages = createAsyncThunk<
+  ImageSchema[],
   { offset: number; id: string },
   { rejectValue: string }
 >(
-  'relatedGifs/fetchRelatedGifs',
+  'relatedImages/fetchRelatedImages',
   async function ({ offset, id }, { rejectWithValue }) {
     try {
       return await GifsApi.getRelatedGifs({
@@ -17,7 +17,7 @@ export const fetchRelatedGifs = createAsyncThunk<
       })
     } catch (err) {
       return rejectWithValue(
-        err instanceof Error ? err.message : 'Failed to fetch gifs',
+        err instanceof Error ? err.message : 'Failed to fetch images',
       )
     }
   },

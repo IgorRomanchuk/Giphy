@@ -1,8 +1,8 @@
+import EmptyState from '@features/favorites-images/components/EmptyState'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import EmptyState from 'features/favorites-gifs/components/EmptyState'
 import ImageContainer from 'shared/ui/ImageContainer'
 
-const FavoritesGifs = () => {
+const FavoritesImages = () => {
   const { favorites } = useAppSelector((state) => state.favorites)
 
   return (
@@ -10,9 +10,8 @@ const FavoritesGifs = () => {
       {favorites.length ? (
         <ImageContainer
           fetchData={() => null}
-          gifsArray={favorites}
+          imagesArray={favorites}
           error={false}
-          directory="../gifs"
           loading={false}
         />
       ) : (
@@ -22,4 +21,4 @@ const FavoritesGifs = () => {
   )
 }
 
-export default FavoritesGifs
+export default FavoritesImages
