@@ -2,9 +2,9 @@ import { resetSearchGifs } from '@features/gifs-search/store/slice'
 import { fetchGifsBySearchValue } from '@features/gifs-search/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
-import GifsContainer from '@shared/ui/GifsContainer'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import ImageContainer from 'shared/ui/ImageContainer'
 
 const GifsSearch = () => {
   const dispatch = useAppDispatch()
@@ -30,11 +30,10 @@ const GifsSearch = () => {
   }, [searchValue])
 
   return (
-    <GifsContainer
+    <ImageContainer
       fetchData={fetchData}
-      gifsArray={gifsBySearchValue}
+      imagesArray={gifsBySearchValue}
       error={error}
-      directory={'../gifs'}
     />
   )
 }

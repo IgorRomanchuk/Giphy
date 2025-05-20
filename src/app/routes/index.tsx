@@ -1,9 +1,10 @@
 import Layout from '@app/layout'
-import FavoritesGifsPage from '@pages/favorites-gifs'
 import GifPage from '@pages/gif'
-import GifsPage from '@pages/gifs'
-import GifsSearchPage from '@pages/gifs-search'
 import NotFoundPage from '@pages/not-found'
+import StickerPage from '@pages/sticker'
+import FavoritesImagesPage from 'pages/favorites-images'
+import ImagesPage from 'pages/images'
+import ImagesSearchPage from 'pages/images-search'
 import { Navigate, useRoutes } from 'react-router-dom'
 
 const Routes = () => {
@@ -14,19 +15,23 @@ const Routes = () => {
       children: [
         {
           path: '/',
-          element: <GifsPage />,
+          element: <ImagesPage />,
         },
         {
-          path: '/favorites-gifs',
-          element: <FavoritesGifsPage />,
+          path: '/favorites-images',
+          element: <FavoritesImagesPage />,
         },
         {
           path: '/search/:searchValue',
-          element: <GifsSearchPage />,
+          element: <ImagesSearchPage />,
         },
         {
           path: '/gifs/:id',
           element: <GifPage />,
+        },
+        {
+          path: '/stickers/:id',
+          element: <StickerPage />,
         },
         { path: 'not-found', element: <NotFoundPage /> },
         { path: '*', element: <Navigate to="not-found" replace /> },

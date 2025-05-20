@@ -1,5 +1,5 @@
-import { resetTrendingGifs } from '@features/trending-gifs/store/slice'
-import { fetchTrendingGifs } from '@features/trending-gifs/store/thunk'
+import { resetTrendingStickers } from '@features/trending-stickers/store/slice'
+import { fetchTrendingStickers } from '@features/trending-stickers/store/thunk'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import { FC, useEffect } from 'react'
@@ -9,20 +9,20 @@ interface Props {
   showImageError?: boolean
 }
 
-const TrendingGifs: FC<Props> = ({ showImageError }) => {
+const TrendingStickers: FC<Props> = ({ showImageError }) => {
   const dispatch = useAppDispatch()
 
-  const { offset, trendingGifs, error } = useAppSelector(
-    (state) => state.trendingGifs,
+  const { offset, trendingStickers, error } = useAppSelector(
+    (state) => state.trendingStickers,
   )
 
   const fetchData = () => {
-    dispatch(fetchTrendingGifs(offset))
+    dispatch(fetchTrendingStickers(offset))
   }
 
   useEffect(() => {
-    dispatch(resetTrendingGifs())
-    const promise = dispatch(fetchTrendingGifs(0))
+    dispatch(resetTrendingStickers())
+    const promise = dispatch(fetchTrendingStickers(0))
 
     return () => {
       promise?.abort()
@@ -32,11 +32,11 @@ const TrendingGifs: FC<Props> = ({ showImageError }) => {
   return (
     <ImageContainer
       fetchData={fetchData}
-      imagesArray={trendingGifs}
+      imagesArray={trendingStickers}
       error={error}
       showImageError={showImageError}
     />
   )
 }
 
-export default TrendingGifs
+export default TrendingStickers

@@ -1,12 +1,12 @@
+import TrendingStickers from '@features/trending-stickers'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
 import Image from 'features/image'
 import RelatedImages from 'features/related-images'
-import TrendingGifs from 'features/trending-gifs'
 import { useParams } from 'react-router-dom'
 
-import s from './gif.module.scss'
+import s from './sticker.module.scss'
 
-const GifPage = () => {
+const StickerPage = () => {
   const { id } = useParams()
 
   const { image } = useAppSelector((state) => state.image)
@@ -17,10 +17,10 @@ const GifPage = () => {
       {image ? (
         <RelatedImages id={id!} />
       ) : (
-        <TrendingGifs showImageError={false} />
+        <TrendingStickers showImageError={false} />
       )}
     </div>
   )
 }
 
-export default GifPage
+export default StickerPage

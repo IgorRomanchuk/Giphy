@@ -1,8 +1,7 @@
 import { ImageSchema } from '@shared/models/image.model'
 
 export interface InitialState {
-  trendingGifs: ImageSchema[]
-  offset: number
+  image: null | ImageSchema
   isLoading: boolean
   error: null | string
 }

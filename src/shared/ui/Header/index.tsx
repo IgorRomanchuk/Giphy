@@ -61,7 +61,7 @@ const Header = () => {
         </div>
         <SearchInput width={width} value={value} setValue={setValue} />
       </header>
-      <div className={s.fakeDiv}></div>
+      <div className={s.fakeDiv} />
     </>
   )
 }

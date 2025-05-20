@@ -15,7 +15,7 @@ const FavoritesButton: FC<Props> = ({ setValue }) => {
 
   const navigateToFavoritesPage = () => {
     setValue('')
-    navigate('/favorites-gifs')
+    navigate('/favorites-images')
   }
 
   return (
