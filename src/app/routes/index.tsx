@@ -1,10 +1,10 @@
 import Layout from '@app/layout'
 import GifPage from '@pages/gif'
-import GifsSearchPage from '@pages/gifs-search'
 import NotFoundPage from '@pages/not-found'
 import StickerPage from '@pages/sticker'
 import FavoritesImagesPage from 'pages/favorites-images'
 import ImagesPage from 'pages/images'
+import ImagesSearchPage from 'pages/images-search'
 import { Navigate, useRoutes } from 'react-router-dom'
 
 const Routes = () => {
@@ -23,7 +23,7 @@ const Routes = () => {
         },
         {
           path: '/search/:searchValue',
-          element: <GifsSearchPage />,
+          element: <ImagesSearchPage />,
         },
         {
           path: '/gifs/:id',

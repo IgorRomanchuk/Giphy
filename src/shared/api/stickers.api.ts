@@ -20,9 +20,4 @@ export const StickersApi = {
         params,
       })
     ).data.data,
-
-  getRelatedStickers: async (
-    params: Partial<ParamsDto>,
-  ): Promise<ImageSchema[]> =>
-    (await api.get(`/stickers/related`, { params })).data.data,
 }

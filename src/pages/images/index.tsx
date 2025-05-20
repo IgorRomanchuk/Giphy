@@ -5,9 +5,9 @@ import TrendingGifs from 'features/trending-gifs'
 
 import s from './images.module.scss'
 
-const media = [
+const items = [
   {
-    key: 'images',
+    key: 'gifs',
     label: 'GIFs',
     children: <TrendingGifs />,
   },
@@ -21,7 +21,7 @@ const media = [
 const ImagesPage = () => {
   return (
     <Tabs
-      items={media}
+      items={items}
       title={
         <div className={s.container}>
           <TrendingUpIcon color="primary" />
