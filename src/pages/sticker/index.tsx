@@ -1,10 +1,26 @@
+import TrendingGifs from '@features/trending-gifs'
 import TrendingStickers from '@features/trending-stickers'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import { useAppSelector } from '@shared/hooks/useAppSelector'
+import Tabs from '@widgets/Tabs'
 import Image from 'features/image'
 import RelatedImages from 'features/related-images'
 import { useParams } from 'react-router-dom'
 
 import s from './sticker.module.scss'
+
+const items = [
+  {
+    key: 'gifs',
+    label: 'GIFs',
+    children: <TrendingGifs showImageError={false} />,
+  },
+  {
+    key: 'stickers',
+    label: 'Stickers',
+    children: <TrendingStickers showImageError={false} />,
+  },
+]
 
 const StickerPage = () => {
   const { id } = useParams()
@@ -17,7 +33,16 @@ const StickerPage = () => {
       {image ? (
         <RelatedImages id={id!} />
       ) : (
-        <TrendingStickers showImageError={false} />
+        <Tabs
+          items={items}
+          defaultActiveKey="stickers"
+          title={
+            <div className={s.tabsHeaderContainer}>
+              <TrendingUpIcon color="primary" />
+              <p>Trending Now</p>
+            </div>
+          }
+        />
       )}
     </div>
   )

@@ -3,3 +3,15 @@
   flex-direction: column;
   gap: 60px;
 }
+
+.tabsHeaderContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  p {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
