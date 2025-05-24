@@ -2,9 +2,9 @@ import giphyLogo from '@assets/img/giphyLogo.png'
 import useScreenSize from '@shared/hooks/useScreenSize'
 import FavoritesButton from '@shared/ui/Header/components/FavoritesButton'
 import MenuCategories from '@shared/ui/Header/components/MenuCategories'
-import SearchInput from '@widgets/SearchInput'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import SearchInput from 'shared/ui/Header/components/SearchInput'
 
 import s from './header.module.scss'
 
