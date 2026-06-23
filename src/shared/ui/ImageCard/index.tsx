@@ -14,6 +14,10 @@ interface IProps {
 const ImageCard = ({ image, large }: IProps) => {
   const [loaded, setLoaded] = useState(false)
 
+  const [bgColor] = useState(() =>
+  image.type === 'gif' ? cardColors[getRandomInt()] : '',
+)
+
   const navigate = useNavigate()
 
   const navigateToImageById = (id: string) => {
@@ -40,8 +44,7 @@ const ImageCard = ({ image, large }: IProps) => {
         className={`${s.boxImage} ${image.type === 'sticker' && s.sticker}`}
         style={{
           paddingBottom: `${aspectRatio}%`,
-          backgroundColor:
-            image.type === 'gif' ? `${cardColors[getRandomInt()]}` : '',
+          backgroundColor: bgColor,
         }}
       >
         <img
