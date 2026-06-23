@@ -15,8 +15,8 @@ const ImageCard = ({ image, large }: IProps) => {
   const [loaded, setLoaded] = useState(false)
 
   const [bgColor] = useState(() =>
-  image.type === 'gif' ? cardColors[getRandomInt()] : '',
-)
+    image.type === 'gif' ? cardColors[getRandomInt()] : '',
+  )
 
   const navigate = useNavigate()
 
