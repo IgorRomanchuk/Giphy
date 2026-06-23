@@ -1,8 +1,8 @@
+import useInfiniteScroll from '@shared/hooks/useInfiniteScroll'
 import { ImageSchema } from '@shared/models/image.model'
 import EmptyState from '@shared/ui/EmptyState'
 import MasonryUi from '@shared/ui/ImageContainer/MasonryUi'
 import Loading from '@shared/ui/Loading'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 interface IProps {
   imagesArray: ImageSchema[]
@@ -19,28 +19,33 @@ const ImageContainer = ({
   showImageError,
   loading = true,
 }: IProps) => {
+  const hasMore = !error
+
+  const sentinelRef = useInfiniteScroll({
+    hasMore,
+    loadMore: fetchData,
+    dataLength: imagesArray?.length ?? 0,
+  })
+
+  if (!imagesArray) return null
+
   return (
-    <>
-      {imagesArray && (
-        <div>
-          <InfiniteScroll
-            dataLength={imagesArray.length}
-            next={fetchData}
-            hasMore={!error}
-            loader={loading && <Loading />}
-            endMessage={
-              <EmptyState
-                showImageError={showImageError}
-                arrow={false}
-                textBody={<p>{error}</p>}
-              />
-            }
-          >
-            <MasonryUi data={imagesArray} />
-          </InfiniteScroll>
-        </div>
+    <div>
+      <MasonryUi data={imagesArray} />
+
+      {hasMore ? (
+        <>
+          <div ref={sentinelRef} style={{ height: 1 }} aria-hidden />
+          {loading && <Loading />}
+        </>
+      ) : (
+        <EmptyState
+          showImageError={showImageError}
+          arrow={false}
+          textBody={<p>{error}</p>}
+        />
       )}
-    </>
+    </div>
   )
 }
 
