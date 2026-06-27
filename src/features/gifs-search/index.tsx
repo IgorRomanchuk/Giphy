@@ -11,7 +11,7 @@ const GifsSearch = () => {
 
   const { searchValue } = useParams()
 
-  const { gifsBySearchValue, offset, error } = useAppSelector(
+  const { gifsBySearchValue, offset, error, isLoading } = useAppSelector(
     (state) => state.gifsBySearchValue,
   )
 
@@ -34,6 +34,7 @@ const GifsSearch = () => {
       fetchData={fetchData}
       imagesArray={gifsBySearchValue}
       error={error}
+      isLoading={isLoading}
     />
   )
 }

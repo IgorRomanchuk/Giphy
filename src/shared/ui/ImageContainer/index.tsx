@@ -10,6 +10,7 @@ interface IProps {
   error?: string | null | boolean
   showImageError?: boolean
   loading?: boolean
+  isLoading?: boolean
 }
 
 const ImageContainer = ({
@@ -18,11 +19,13 @@ const ImageContainer = ({
   error,
   showImageError,
   loading = true,
+  isLoading = false,
 }: IProps) => {
   const hasMore = !error
 
   const sentinelRef = useInfiniteScroll({
     hasMore,
+    isLoading,
     loadMore: fetchData,
     dataLength: imagesArray?.length ?? 0,
   })

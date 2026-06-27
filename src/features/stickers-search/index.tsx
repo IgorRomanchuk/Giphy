@@ -11,7 +11,7 @@ const StickersSearch = () => {
 
   const { searchValue } = useParams()
 
-  const { stickersBySearchValue, offset, error } = useAppSelector(
+  const { stickersBySearchValue, offset, error, isLoading } = useAppSelector(
     (state) => state.stickersBySearchValue,
   )
 
@@ -36,6 +36,7 @@ const StickersSearch = () => {
       fetchData={fetchData}
       imagesArray={stickersBySearchValue}
       error={error}
+      isLoading={isLoading}
     />
   )
 }
