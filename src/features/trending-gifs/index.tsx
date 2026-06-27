@@ -12,7 +12,7 @@ interface Props {
 const TrendingGifs: FC<Props> = ({ showImageError }) => {
   const dispatch = useAppDispatch()
 
-  const { offset, trendingGifs, error } = useAppSelector(
+  const { offset, trendingGifs, error, isLoading } = useAppSelector(
     (state) => state.trendingGifs,
   )
 
@@ -35,6 +35,7 @@ const TrendingGifs: FC<Props> = ({ showImageError }) => {
       imagesArray={trendingGifs}
       error={error}
       showImageError={showImageError}
+      isLoading={isLoading}
     />
   )
 }

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 
 interface Props {
   hasMore: boolean
+  isLoading: boolean
   loadMore: () => void
   dataLength: number
   rootMargin?: string
@@ -9,6 +10,7 @@ interface Props {
 
 const useInfiniteScroll = ({
   hasMore,
+  isLoading,
   loadMore,
   dataLength,
   rootMargin = '300px',
@@ -18,18 +20,20 @@ const useInfiniteScroll = ({
   const loadMoreRef = useRef(loadMore)
   loadMoreRef.current = loadMore
 
-  const isLockedRef = useRef(false)
-
   useEffect(() => {
-    isLockedRef.current = false
-
     const node = sentinelRef.current
-    if (!node || !hasMore) return
+
+    // Don't observe when:
+    // - there's nothing more to load (hasMore),
+    // - a request is already in flight (isLoading) — prevents duplicate
+    //   pages fired with a stale offset before the first one resolves,
+    // - nothing is loaded yet (dataLength === 0) — the first page is owned
+    //   by the feature itself, so the hook only fetches subsequent pages.
+    if (!node || !hasMore || isLoading || dataLength === 0) return
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !isLockedRef.current) {
-          isLockedRef.current = true
+        if (entries[0].isIntersecting) {
           loadMoreRef.current()
         }
       },
@@ -38,7 +42,7 @@ const useInfiniteScroll = ({
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [hasMore, dataLength, rootMargin])
+  }, [hasMore, isLoading, dataLength, rootMargin])
 
   return sentinelRef
 }

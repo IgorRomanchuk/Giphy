@@ -14,7 +14,7 @@ interface Props {
 const RelatedImages: FC<Props> = ({ id }) => {
   const dispatch = useAppDispatch()
 
-  const { offset, relatedImages, error } = useAppSelector(
+  const { offset, relatedImages, error, isLoading } = useAppSelector(
     (state) => state.relatedImages,
   )
 
@@ -40,6 +40,7 @@ const RelatedImages: FC<Props> = ({ id }) => {
         imagesArray={relatedImages}
         error={error}
         showImageError={false}
+        isLoading={isLoading}
       />
     </div>
   )
