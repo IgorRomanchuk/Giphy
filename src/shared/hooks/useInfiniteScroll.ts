@@ -23,12 +23,6 @@ const useInfiniteScroll = ({
   useEffect(() => {
     const node = sentinelRef.current
 
-    // Don't observe when:
-    // - there's nothing more to load (hasMore),
-    // - a request is already in flight (isLoading) — prevents duplicate
-    //   pages fired with a stale offset before the first one resolves,
-    // - nothing is loaded yet (dataLength === 0) — the first page is owned
-    //   by the feature itself, so the hook only fetches subsequent pages.
     if (!node || !hasMore || isLoading || dataLength === 0) return
 
     const observer = new IntersectionObserver(
