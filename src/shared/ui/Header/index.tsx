@@ -24,6 +24,7 @@ const Header = () => {
       top: 0,
       behavior: 'smooth',
     })
+    setValue('')
   }
 
   useEffect(() => {
